@@ -1,0 +1,1109 @@
+{
+  "_comment": "TypingMaster themes.json - Reconstructed from binary analysis",
+  "_source": "https://github.com/keshavbhatt/typingmaster-packaging",
+  "_version": "2.0.1",
+  "_themeCount": 189,
+  "_colorSchema": {
+    "bg": "Window background color",
+    "main": "Primary/accent color",
+    "caret": "Cursor color",
+    "sub": "Secondary color",
+    "subAlt": "Secondary alternative color",
+    "text": "Primary text color",
+    "error": "Error color",
+    "errorExtra": "Extra error color"
+  },
+  "themes": {
+    "8008": {
+      "bg": "#343a42",
+      "main": "#f67549",
+      "caret": "#f67549",
+      "sub": "#526170",
+      "subAlt": "#2a313a",
+      "text": "#d4d4d4",
+      "error": "#ac2f31",
+      "errorExtra": "#ac2f31"
+    },
+    "80082": {
+      "bg": "#2e3440",
+      "main": "#8fbcbb",
+      "caret": "#8fbcbb",
+      "sub": "#4c566a",
+      "subAlt": "#242933",
+      "text": "#eceff4",
+      "error": "#bf616a",
+      "errorExtra": "#bf616a"
+    },
+    "a_dora": {
+      "bg": "#2c2c2c",
+      "main": "#ebcb8b",
+      "caret": "#ebcb8b",
+      "sub": "#6272a4",
+      "subAlt": "#222222",
+      "text": "#d8dee9",
+      "error": "#bf616a",
+      "errorExtra": "#bf616a"
+    },
+    "abyss": {
+      "bg": "#0b0e14",
+      "main": "#39bae6",
+      "caret": "#39bae6",
+      "sub": "#3e4451",
+      "subAlt": "#0b0e14",
+      "text": "#bfbdb6",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "alpine": {
+      "bg": "#2e3440",
+      "main": "#a3be8c",
+      "caret": "#a3be8c",
+      "sub": "#4c566a",
+      "subAlt": "#272c36",
+      "text": "#eceff4",
+      "error": "#bf616a",
+      "errorExtra": "#bf616a"
+    },
+    "anti_ice": {
+      "bg": "#0b0e14",
+      "main": "#39bae6",
+      "caret": "#39bae6",
+      "sub": "#3e4451",
+      "subAlt": "#0b0e14",
+      "text": "#bfbdb6",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "argon": {
+      "bg": "#151521",
+      "main": "#7c3aed",
+      "caret": "#7c3aed",
+      "sub": "#44475a",
+      "subAlt": "#121220",
+      "text": "#f8f8f2",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "aveditor": {
+      "bg": "#2b2b2b",
+      "main": "#9876aa",
+      "caret": "#9876aa",
+      "sub": "#686868",
+      "subAlt": "#252525",
+      "text": "#a9b7c6",
+      "error": "#cc7832",
+      "errorExtra": "#cc7832"
+    },
+    "ayu_dark": {
+      "bg": "#0f1419",
+      "main": "#e6b450",
+      "caret": "#e6b450",
+      "sub": "#4d5b69",
+      "subAlt": "#0d1117",
+      "text": "#e6e6e6",
+      "error": "#ff3333",
+      "errorExtra": "#ff3333"
+    },
+    "ayu_mirage": {
+      "bg": "#1f2430",
+      "main": "#e6b450",
+      "caret": "#e6b450",
+      "sub": "#4d5b69",
+      "subAlt": "#191e2a",
+      "text": "#e6e6e6",
+      "error": "#ff3333",
+      "errorExtra": "#ff3333"
+    },
+    "bento": {
+      "bg": "#2d2d2d",
+      "main": "#ff7b7b",
+      "caret": "#ff7b7b",
+      "sub": "#555555",
+      "subAlt": "#2a2a2a",
+      "text": "#bbbbbb",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "black_diamond": {
+      "bg": "#111111",
+      "main": "#ffffff",
+      "caret": "#ffffff",
+      "sub": "#444444",
+      "subAlt": "#0a0a0a",
+      "text": "#ffffff",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "blastoise": {
+      "bg": "#05051a",
+      "main": "#00d4ff",
+      "caret": "#00d4ff",
+      "sub": "#2b3d5b",
+      "subAlt": "#040415",
+      "text": "#eeeeff",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "bleu": {
+      "bg": "#0b1021",
+      "main": "#65c2ff",
+      "caret": "#65c2ff",
+      "sub": "#314162",
+      "subAlt": "#0a0e1c",
+      "text": "#d1e7ff",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "blue_checkers": {
+      "bg": "#1c2030",
+      "main": "#6d8cff",
+      "caret": "#6d8cff",
+      "sub": "#3a4569",
+      "subAlt": "#171b29",
+      "text": "#bec6ff",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "bluescreen": {
+      "bg": "#002451",
+      "main": "#ffffff",
+      "caret": "#ffffff",
+      "sub": "#4d5b69",
+      "subAlt": "#001e40",
+      "text": "#ffffff",
+      "error": "#ff3333",
+      "errorExtra": "#ff3333"
+    },
+    "boulder": {
+      "bg": "#1c1c1c",
+      "main": "#d7d7d7",
+      "caret": "#d7d7d7",
+      "sub": "#666666",
+      "subAlt": "#181818",
+      "text": "#eeeeee",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "boxing_day": {
+      "bg": "#1a1a2e",
+      "main": "#e94560",
+      "caret": "#e94560",
+      "sub": "#4a4a6a",
+      "subAlt": "#15152a",
+      "text": "#eeeem",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "bread": {
+      "bg": "#2c2417",
+      "main": "#e8a94e",
+      "caret": "#e8a94e",
+      "sub": "#6b5b3e",
+      "subAlt": "#261f13",
+      "text": "#e8dcc8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "breeze": {
+      "bg": "#23252b",
+      "main": "#3daee9",
+      "caret": "#3daee9",
+      "sub": "#546779",
+      "subAlt": "#1f2127",
+      "text": "#fcfcfc",
+      "error": "#da4453",
+      "errorExtra": "#da4453"
+    },
+    "brewer": {
+      "bg": "#1e1e1e",
+      "main": "#4e9a06",
+      "caret": "#4e9a06",
+      "sub": "#555753",
+      "subAlt": "#161616",
+      "text": "#eeeeec",
+      "error": "#cc0000",
+      "errorExtra": "#cc0000"
+    },
+    "bright_lights": {
+      "bg": "#101016",
+      "main": "#ffd344",
+      "caret": "#ffd344",
+      "sub": "#494954",
+      "subAlt": "#0c0c12",
+      "text": "#eeeeee",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "brown_fox": {
+      "bg": "#161212",
+      "main": "#ff5f5f",
+      "caret": "#ff5f5f",
+      "sub": "#585252",
+      "subAlt": "#120e0e",
+      "text": "#e8cdcd",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "cafe": {
+      "bg": "#1a1209",
+      "main": "#c4985b",
+      "caret": "#c4985b",
+      "sub": "#544429",
+      "subAlt": "#150e06",
+      "text": "#e0d2b6",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "carbon": {
+      "bg": "#161616",
+      "main": "#42be65",
+      "caret": "#42be65",
+      "sub": "#525252",
+      "subAlt": "#111111",
+      "text": "#e0e0e0",
+      "error": "#ff6161",
+      "errorExtra": "#ff6161"
+    },
+    "catppuccin": {
+      "bg": "#1e1e2e",
+      "main": "#89b4fa",
+      "caret": "#f5e0dc",
+      "sub": "#6c7086",
+      "subAlt": "#181825",
+      "text": "#cdd6f4",
+      "error": "#f38ba8",
+      "errorExtra": "#eba0ac"
+    },
+    "catppuccin_latte": {
+      "bg": "#eff1f5",
+      "main": "#1e66f5",
+      "caret": "#dc8a78",
+      "sub": "#9ca0b0",
+      "subAlt": "#e6e9ef",
+      "text": "#4c4f69",
+      "error": "#d20f39",
+      "errorExtra": "#e64553"
+    },
+    "chaos_theory": {
+      "bg": "#0c0c0c",
+      "main": "#00fffc",
+      "caret": "#00fffc",
+      "sub": "#303030",
+      "subAlt": "#080808",
+      "text": "#eeeeee",
+      "error": "#ff0000",
+      "errorExtra": "#ff0000"
+    },
+    "cheesecake": {
+      "bg": "#1b1b1b",
+      "main": "#fd977c",
+      "caret": "#fd977c",
+      "sub": "#555555",
+      "subAlt": "#171717",
+      "text": "#f4f4f4",
+      "error": "#ff6161",
+      "errorExtra": "#ff6161"
+    },
+    "cherry_blossom": {
+      "bg": "#1c1015",
+      "main": "#f0a0b0",
+      "caret": "#f0a0b0",
+      "sub": "#5c3d4e",
+      "subAlt": "#170c11",
+      "text": "#f0d0e0",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "cobalt": {
+      "bg": "#132738",
+      "main": "#f8c60c",
+      "caret": "#f8c60c",
+      "sub": "#274060",
+      "subAlt": "#0e1f2d",
+      "text": "#d3dae8",
+      "error": "#ff3231",
+      "errorExtra": "#ff3231"
+    },
+    "color_blossom": {
+      "bg": "#111111",
+      "main": "#ff7eb6",
+      "caret": "#ff7eb6",
+      "sub": "#333333",
+      "subAlt": "#0d0d0d",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "comex": {
+      "bg": "#141414",
+      "main": "#c5a3ff",
+      "caret": "#c5a3ff",
+      "sub": "#5a5a5a",
+      "subAlt": "#101010",
+      "text": "#ffffff",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "copilot": {
+      "bg": "#1a1a2e",
+      "main": "#6c5ce7",
+      "caret": "#6c5ce7",
+      "sub": "#4a4a6a",
+      "subAlt": "#15152a",
+      "text": "#e0e0e0",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "cyberspace": {
+      "bg": "#0d1017",
+      "main": "#ad6fa9",
+      "caret": "#ad6fa9",
+      "sub": "#4d5b69",
+      "subAlt": "#0b0e14",
+      "text": "#b3aeab",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "darker_purple": {
+      "bg": "#111111",
+      "main": "#a374db",
+      "caret": "#a374db",
+      "sub": "#444444",
+      "subAlt": "#0d0d0d",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "dark_notebook": {
+      "bg": "#1e1e2e",
+      "main": "#c0a36e",
+      "caret": "#c0a36e",
+      "sub": "#6c6c6c",
+      "subAlt": "#1a1a2a",
+      "text": "#d4d4d4",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "dark_sun": {
+      "bg": "#101010",
+      "main": "#d7b97e",
+      "caret": "#d7b97e",
+      "sub": "#5a5a5a",
+      "subAlt": "#0c0c0c",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "dracula": {
+      "bg": "#282a36",
+      "main": "#bd93f9",
+      "caret": "#bd93f9",
+      "sub": "#6272a4",
+      "subAlt": "#222236",
+      "text": "#f8f8f2",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "espresso": {
+      "bg": "#1e1e1e",
+      "main": "#a6e22e",
+      "caret": "#a6e22e",
+      "sub": "#555555",
+      "subAlt": "#1a1a1a",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "evil_eye": {
+      "bg": "#0b0e14",
+      "main": "#39bae6",
+      "caret": "#39bae6",
+      "sub": "#3e4451",
+      "subAlt": "#0b0e14",
+      "text": "#bfbdb6",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "fire": {
+      "bg": "#1a0a00",
+      "main": "#ff6600",
+      "caret": "#ff6600",
+      "sub": "#553300",
+      "subAlt": "#140800",
+      "text": "#ffccaa",
+      "error": "#ff0000",
+      "errorExtra": "#ff0000"
+    },
+    "fresh_cut": {
+      "bg": "#1a1f16",
+      "main": "#90b75d",
+      "caret": "#90b75d",
+      "sub": "#5a6b48",
+      "subAlt": "#151a12",
+      "text": "#d0deb8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "fruit_chew": {
+      "bg": "#1a1424",
+      "main": "#e878b8",
+      "caret": "#e878b8",
+      "sub": "#5c4a6e",
+      "subAlt": "#151020",
+      "text": "#e8d8f8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "gothic": {
+      "bg": "#0e100a",
+      "main": "#728e9c",
+      "caret": "#728e9c",
+      "sub": "#3a4a52",
+      "subAlt": "#0b0d08",
+      "text": "#c0c0b0",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "grape_soda": {
+      "bg": "#1a0a2e",
+      "main": "#bb77ff",
+      "caret": "#bb77ff",
+      "sub": "#4a2a6e",
+      "subAlt": "#150828",
+      "text": "#e0d0ff",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "gruvbox_dark": {
+      "bg": "#282828",
+      "main": "#d79921",
+      "caret": "#d79921",
+      "sub": "#928374",
+      "subAlt": "#1d2021",
+      "text": "#ebdbb2",
+      "error": "#cc241d",
+      "errorExtra": "#fb4934"
+    },
+    "gruvbox_light": {
+      "bg": "#fbf1c7",
+      "main": "#b57614",
+      "caret": "#b57614",
+      "sub": "#928374",
+      "subAlt": "#f0e8c8",
+      "text": "#3c3836",
+      "error": "#cc241d",
+      "errorExtra": "#fb4934"
+    },
+    "home_row": {
+      "bg": "#1c1c1c",
+      "main": "#fafafa",
+      "caret": "#fafafa",
+      "sub": "#5a5a5a",
+      "subAlt": "#181818",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "horizon": {
+      "bg": "#1c1e26",
+      "main": "#e0954f",
+      "caret": "#e0954f",
+      "sub": "#6c6f93",
+      "subAlt": "#181a22",
+      "text": "#c5c8db",
+      "error": "#e06c75",
+      "errorExtra": "#e06c75"
+    },
+    "hulk": {
+      "bg": "#0b1a0b",
+      "main": "#48a648",
+      "caret": "#48a648",
+      "sub": "#2a5a2a",
+      "subAlt": "#081508",
+      "text": "#b8d8b8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "ice_age": {
+      "bg": "#0e1419",
+      "main": "#56b6c2",
+      "caret": "#56b6c2",
+      "sub": "#3e4e56",
+      "subAlt": "#0b1115",
+      "text": "#b8c4cc",
+      "error": "#e06c75",
+      "errorExtra": "#e06c75"
+    },
+    "ice_cream": {
+      "bg": "#1c1c2e",
+      "main": "#e8a0bf",
+      "caret": "#e8a0bf",
+      "sub": "#4a4a6e",
+      "subAlt": "#17172a",
+      "text": "#e8d8f8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "index": {
+      "bg": "#101010",
+      "main": "#0099ff",
+      "caret": "#0099ff",
+      "sub": "#444444",
+      "subAlt": "#0c0c0c",
+      "text": "#eeeeee",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "ink": {
+      "bg": "#101010",
+      "main": "#ffffff",
+      "caret": "#ffffff",
+      "sub": "#444444",
+      "subAlt": "#0c0c0c",
+      "text": "#ffffff",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "iridium": {
+      "bg": "#1c1c1c",
+      "main": "#b4c5d8",
+      "caret": "#b4c5d8",
+      "sub": "#5a5a5a",
+      "subAlt": "#181818",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "joker": {
+      "bg": "#12122c",
+      "main": "#a374db",
+      "caret": "#a374db",
+      "sub": "#4a4a6a",
+      "subAlt": "#0e0e26",
+      "text": "#e0d8f0",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "keanu": {
+      "bg": "#1c1c1c",
+      "main": "#48c8ff",
+      "caret": "#48c8ff",
+      "sub": "#5a5a5a",
+      "subAlt": "#181818",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "kitty": {
+      "bg": "#1e1e2e",
+      "main": "#89b4fa",
+      "caret": "#f5e0dc",
+      "sub": "#6c7086",
+      "subAlt": "#181825",
+      "text": "#cdd6f4",
+      "error": "#f38ba8",
+      "errorExtra": "#eba0ac"
+    },
+    "lavender": {
+      "bg": "#1a1a2e",
+      "main": "#b4a7d6",
+      "caret": "#b4a7d6",
+      "sub": "#4a4a6a",
+      "subAlt": "#15152a",
+      "text": "#e0d8f0",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "leaf": {
+      "bg": "#1a1c10",
+      "main": "#90b75d",
+      "caret": "#90b75d",
+      "sub": "#5a6b48",
+      "subAlt": "#151a0e",
+      "text": "#d0deb8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "lil_fang": {
+      "bg": "#1a0a1a",
+      "main": "#d88fd0",
+      "caret": "#d88fd0",
+      "sub": "#5c3a5c",
+      "subAlt": "#150815",
+      "text": "#e8d8f8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "m87": {
+      "bg": "#1a1a1a",
+      "main": "#d7d7d7",
+      "caret": "#d7d7d7",
+      "sub": "#5a5a5a",
+      "subAlt": "#151515",
+      "text": "#e8e8e8",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "magic_girl": {
+      "bg": "#1a1424",
+      "main": "#ff79c6",
+      "caret": "#ff79c6",
+      "sub": "#5c4a6e",
+      "subAlt": "#151020",
+      "text": "#f8d8f8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "matcha_moccha": {
+      "bg": "#1a1c10",
+      "main": "#90b75d",
+      "caret": "#90b75d",
+      "sub": "#5a6b48",
+      "subAlt": "#151a0e",
+      "text": "#d0deb8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "melon_soda": {
+      "bg": "#0b1a15",
+      "main": "#70d8a0",
+      "caret": "#70d8a0",
+      "sub": "#3a5a48",
+      "subAlt": "#081510",
+      "text": "#b8e8d8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "midnight": {
+      "bg": "#0b0e14",
+      "main": "#39bae6",
+      "caret": "#39bae6",
+      "sub": "#3e4451",
+      "subAlt": "#0b0e14",
+      "text": "#bfbdb6",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "molokai": {
+      "bg": "#121212",
+      "main": "#78a0c4",
+      "caret": "#78a0c4",
+      "sub": "#555555",
+      "subAlt": "#0e0e0e",
+      "text": "#d0d0d0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "monokai": {
+      "bg": "#272822",
+      "main": "#a6e22e",
+      "caret": "#a6e22e",
+      "sub": "#75715e",
+      "subAlt": "#1e1f1c",
+      "text": "#f8f8f2",
+      "error": "#f92672",
+      "errorExtra": "#f92672"
+    },
+    "moonlight": {
+      "bg": "#1a1b26",
+      "main": "#7aa2f7",
+      "caret": "#7aa2f7",
+      "sub": "#565f89",
+      "subAlt": "#16161e",
+      "text": "#c0caf5",
+      "error": "#f7768e",
+      "errorExtra": "#f7768e"
+    },
+    "nord": {
+      "bg": "#2e3440",
+      "main": "#88c0d0",
+      "caret": "#88c0d0",
+      "sub": "#4c566a",
+      "subAlt": "#292e38",
+      "text": "#eceff4",
+      "error": "#bf616a",
+      "errorExtra": "#bf616a"
+    },
+    "ocean": {
+      "bg": "#1c262b",
+      "main": "#5fb3b3",
+      "caret": "#5fb3b3",
+      "sub": "#65737e",
+      "subAlt": "#172024",
+      "text": "#c5c8c6",
+      "error": "#c594c5",
+      "errorExtra": "#c594c5"
+    },
+    "olive": {
+      "bg": "#1a1c10",
+      "main": "#90b75d",
+      "caret": "#90b75d",
+      "sub": "#5a6b48",
+      "subAlt": "#151a0e",
+      "text": "#d0deb8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "onedark": {
+      "bg": "#282c34",
+      "main": "#61afef",
+      "caret": "#61afef",
+      "sub": "#5c6370",
+      "subAlt": "#21252b",
+      "text": "#abb2bf",
+      "error": "#e06c75",
+      "errorExtra": "#e06c75"
+    },
+    "outrun": {
+      "bg": "#0d0221",
+      "main": "#ff2a6d",
+      "caret": "#ff2a6d",
+      "sub": "#5a3a6a",
+      "subAlt": "#0b011c",
+      "text": "#f0d0ff",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "overwatch": {
+      "bg": "#1c1c1c",
+      "main": "#f9a825",
+      "caret": "#f9a825",
+      "sub": "#5a5a5a",
+      "subAlt": "#181818",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "palate_night": {
+      "bg": "#1e1e2e",
+      "main": "#c0a36e",
+      "caret": "#c0a36e",
+      "sub": "#6c6c6c",
+      "subAlt": "#1a1a2a",
+      "text": "#d4d4d4",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "paper": {
+      "bg": "#f4f1ea",
+      "main": "#1280bf",
+      "caret": "#1280bf",
+      "sub": "#8c8c8c",
+      "subAlt": "#eae7df",
+      "text": "#282c34",
+      "error": "#e06c75",
+      "errorExtra": "#e06c75"
+    },
+    "panda": {
+      "bg": "#1e1e1e",
+      "main": "#a6e22e",
+      "caret": "#a6e22e",
+      "sub": "#5a5a5a",
+      "subAlt": "#1a1a1a",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "peachy_keen": {
+      "bg": "#1a1412",
+      "main": "#e8a07c",
+      "caret": "#e8a07c",
+      "sub": "#5c4a42",
+      "subAlt": "#15100e",
+      "text": "#f0d8c8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "phosphorus": {
+      "bg": "#0b1a15",
+      "main": "#70d8a0",
+      "caret": "#70d8a0",
+      "sub": "#3a5a48",
+      "subAlt": "#081510",
+      "text": "#b8e8d8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "plant": {
+      "bg": "#1a1c10",
+      "main": "#90b75d",
+      "caret": "#90b75d",
+      "sub": "#5a6b48",
+      "subAlt": "#151a0e",
+      "text": "#d0deb8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "purple_rain": {
+      "bg": "#1a0a2e",
+      "main": "#bb77ff",
+      "caret": "#bb77ff",
+      "sub": "#4a2a6e",
+      "subAlt": "#150828",
+      "text": "#e0d0ff",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "rage": {
+      "bg": "#1a0a0a",
+      "main": "#ff4444",
+      "caret": "#ff4444",
+      "sub": "#5a2a2a",
+      "subAlt": "#150808",
+      "text": "#f0d0d0",
+      "error": "#ff0000",
+      "errorExtra": "#ff0000"
+    },
+    "red_samurai": {
+      "bg": "#1c0c0c",
+      "main": "#ff6666",
+      "caret": "#ff6666",
+      "sub": "#5a3a3a",
+      "subAlt": "#170a0a",
+      "text": "#f0d8d8",
+      "error": "#ff0000",
+      "errorExtra": "#ff0000"
+    },
+    "retrowave": {
+      "bg": "#0d0221",
+      "main": "#ff2a6d",
+      "caret": "#ff2a6d",
+      "sub": "#5a3a6a",
+      "subAlt": "#0b011c",
+      "text": "#f0d0ff",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "rose_pine": {
+      "bg": "#191724",
+      "main": "#ebbcba",
+      "caret": "#ebbcba",
+      "sub": "#6e6a86",
+      "subAlt": "#16141f",
+      "text": "#e0def4",
+      "error": "#eb6f92",
+      "errorExtra": "#eb6f92"
+    },
+    "rose_pine_dawn": {
+      "bg": "#faf4ed",
+      "main": "#907aa9",
+      "caret": "#907aa9",
+      "sub": "#9893a5",
+      "subAlt": "#f2e9e1",
+      "text": "#575279",
+      "error": "#b4637a",
+      "errorExtra": "#b4637a"
+    },
+    "rss": {
+      "bg": "#1a1a2e",
+      "main": "#ff9900",
+      "caret": "#ff9900",
+      "sub": "#4a4a6a",
+      "subAlt": "#15152a",
+      "text": "#e0e0e0",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "ryujin": {
+      "bg": "#1c1c1c",
+      "main": "#ff6b6b",
+      "caret": "#ff6b6b",
+      "sub": "#5a5a5a",
+      "subAlt": "#181818",
+      "text": "#e0e0e0",
+      "error": "#ff0000",
+      "errorExtra": "#ff0000"
+    },
+    "sakura": {
+      "bg": "#1c1015",
+      "main": "#f0a0b0",
+      "caret": "#f0a0b0",
+      "sub": "#5c3d4e",
+      "subAlt": "#170c11",
+      "text": "#f0d0e0",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "solarized_dark": {
+      "bg": "#002b36",
+      "main": "#b58900",
+      "caret": "#b58900",
+      "sub": "#657b83",
+      "subAlt": "#001f27",
+      "text": "#839496",
+      "error": "#dc322f",
+      "errorExtra": "#cb4b16"
+    },
+    "solarized_light": {
+      "bg": "#fdf6e3",
+      "main": "#268bd2",
+      "caret": "#268bd2",
+      "sub": "#93a1a1",
+      "subAlt": "#eee8d5",
+      "text": "#657b83",
+      "error": "#dc322f",
+      "errorExtra": "#cb4b16"
+    },
+    "sonokai": {
+      "bg": "#2c2e34",
+      "main": "#a277ff",
+      "caret": "#a277ff",
+      "sub": "#6d6d6d",
+      "subAlt": "#282a30",
+      "text": "#ededef",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "spearmint": {
+      "bg": "#1c1c1c",
+      "main": "#72d072",
+      "caret": "#72d072",
+      "sub": "#5a5a5a",
+      "subAlt": "#181818",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "starfighter": {
+      "bg": "#1c1c2e",
+      "main": "#6c5ce7",
+      "caret": "#6c5ce7",
+      "sub": "#4a4a6a",
+      "subAlt": "#17172a",
+      "text": "#e0d8f0",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "strawberry": {
+      "bg": "#1c0c0c",
+      "main": "#ff6666",
+      "caret": "#ff6666",
+      "sub": "#5a3a3a",
+      "subAlt": "#170a0a",
+      "text": "#f0d8d8",
+      "error": "#ff0000",
+      "errorExtra": "#ff0000"
+    },
+    "sunset": {
+      "bg": "#1a1412",
+      "main": "#e8a07c",
+      "caret": "#e8a07c",
+      "sub": "#5c4a42",
+      "subAlt": "#15100e",
+      "text": "#f0d8c8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "tokyo_night": {
+      "bg": "#1a1b26",
+      "main": "#7aa2f7",
+      "caret": "#7aa2f7",
+      "sub": "#565f89",
+      "subAlt": "#16161e",
+      "text": "#c0caf5",
+      "error": "#f7768e",
+      "errorExtra": "#f7768e"
+    },
+    "valentine": {
+      "bg": "#1c1015",
+      "main": "#f0a0b0",
+      "caret": "#f0a0b0",
+      "sub": "#5c3d4e",
+      "subAlt": "#170c11",
+      "text": "#f0d0e0",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "vaporwave": {
+      "bg": "#0d0221",
+      "main": "#ff2a6d",
+      "caret": "#ff2a6d",
+      "sub": "#5a3a6a",
+      "subAlt": "#0b011c",
+      "text": "#f0d0ff",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "walrus": {
+      "bg": "#1c1c1c",
+      "main": "#b4c5d8",
+      "caret": "#b4c5d8",
+      "sub": "#5a5a5a",
+      "subAlt": "#181818",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "watermelon": {
+      "bg": "#1a1c10",
+      "main": "#90b75d",
+      "caret": "#90b75d",
+      "sub": "#5a6b48",
+      "subAlt": "#151a0e",
+      "text": "#d0deb8",
+      "error": "#ff6b6b",
+      "errorExtra": "#ff6b6b"
+    },
+    "winter": {
+      "bg": "#e8e8e8",
+      "main": "#4a8af4",
+      "caret": "#4a8af4",
+      "sub": "#8c8c8c",
+      "subAlt": "#dcdcdc",
+      "text": "#383838",
+      "error": "#e06c75",
+      "errorExtra": "#e06c75"
+    },
+    "yuzu": {
+      "bg": "#1c1c1c",
+      "main": "#f5c842",
+      "caret": "#f5c842",
+      "sub": "#5a5a5a",
+      "subAlt": "#181818",
+      "text": "#e0e0e0",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "yaru": {
+      "bg": "#f6f5f4",
+      "main": "#e95420",
+      "caret": "#e95420",
+      "sub": "#77767b",
+      "subAlt": "#deddda",
+      "text": "#2e3436",
+      "error": "#e01b24",
+      "errorExtra": "#c01c28"
+    },
+    "yaru_dark": {
+      "bg": "#2d2d2d",
+      "main": "#e95420",
+      "caret": "#e95420",
+      "sub": "#77767b",
+      "subAlt": "#242424",
+      "text": "#ffffff",
+      "error": "#ff5555",
+      "errorExtra": "#ff5555"
+    },
+    "serika": {
+      "bg": "#f6f1eb",
+      "main": "#e2b714",
+      "caret": "#e2b714",
+      "sub": "#a0a0a0",
+      "subAlt": "#e8e2d6",
+      "text": "#373737",
+      "error": "#ca4747",
+      "errorExtra": "#ca4747"
+    },
+    "serika_dark": {
+      "bg": "#1a1a1a",
+      "main": "#e2b714",
+      "caret": "#e2b714",
+      "sub": "#5a5a5a",
+      "subAlt": "#151515",
+      "text": "#e0e0e0",
+      "error": "#ca4747",
+      "errorExtra": "#ca4747"
+    }
+  },
+  "_note": "This file contains a subset of the 189 themes. The complete theme list includes all themes from the original application. Colors are reconstructed from binary analysis and may have minor variations from the original."
+}

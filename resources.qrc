@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/qml/Main.qml</file>
+        <file>resources/qml/Theme.qml</file>
+        <file>resources/qml/FocusState.qml</file>
+        <file>resources/qml/TypingSurface.qml</file>
+        <file>resources/qml/HomeScreen.qml</file>
+        <file>resources/qml/PracticeScreen.qml</file>
+        <file>resources/qml/StatsScreen.qml</file>
+        <file>resources/qml/ResultsView.qml</file>
+        <file>resources/qml/Heatmap.qml</file>
+        <file>resources/qml/KeyRing.qml</file>
+        <file>resources/qml/Sparkline.qml</file>
+        <file>resources/qml/ResultChart.qml</file>
+        <file>resources/qml/HistoryChart.qml</file>
+        <file>resources/qml/StatBadge.qml</file>
+        <file>resources/qml/Meter.qml</file>
+        <file>resources/qml/Card.qml</file>
+        <file>resources/qml/AppButton.qml</file>
+        <file>resources/qml/NavButton.qml</file>
+        <file>resources/qml/Selector.qml</file>
+        <file>resources/qml/ProfileSwitcher.qml</file>
+        <file>resources/qml/ThemePicker.qml</file>
+        <file>resources/qml/AboutDialog.qml</file>
+        <file>resources/qml/AccountDialog.qml</file>
+        <file>resources/qml/KeySounds.qml</file>
+        <file>resources/data/themes.json</file>
+        <file>resources/data/languages.json</file>
+        <file>resources/data/keyboard-layouts.json</file>
+    </qresource>
+</RCC>

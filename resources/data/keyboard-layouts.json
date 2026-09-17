@@ -1,0 +1,303 @@
+{
+  "_comment": "TypingMaster keyboard-layouts.json - Reconstructed from binary analysis",
+  "_source": "https://github.com/keshavbhatt/typingmaster-packaging",
+  "_version": "2.0.1",
+  "_note": "Each language has its own keyboard layout. The qwerty layout is the base for most languages.",
+  "layouts": {
+    "qwerty": {
+      "name": "QWERTY",
+      "description": "Standard QWERTY layout",
+      "rightToLeft": false,
+      "joiningScript": false,
+      "noLazyMode": false,
+      "orderedByFrequency": true,
+      "keymapShowTopRow": true,
+      "additionalAccents": [],
+      "rows": [
+        {
+          "row": 0,
+          "keys": [
+            {"key": "`", "shift": "~", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "1", "shift": "!", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "2", "shift": "@", "home": false, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "3", "shift": "#", "home": false, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "4", "shift": "$", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "5", "shift": "%", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "6", "shift": "^", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "7", "shift": "&", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "8", "shift": "*", "home": false, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": "9", "shift": "(", "home": false, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": "0", "shift": ")", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "-", "shift": "_", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "=", "shift": "+", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "Backspace", "shift": "", "home": false, "width": 2, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 1,
+          "keys": [
+            {"key": "Tab", "shift": "", "home": false, "width": 1.5, "space": false, "finger": "left_pinky"},
+            {"key": "q", "shift": "Q", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "w", "shift": "W", "home": false, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "e", "shift": "E", "home": false, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "r", "shift": "R", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "t", "shift": "T", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "y", "shift": "Y", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "u", "shift": "U", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "i", "shift": "I", "home": false, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": "o", "shift": "O", "home": false, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": "p", "shift": "P", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "[", "shift": "{", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "]", "shift": "}", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "\\", "shift": "|", "home": false, "width": 1.5, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 2,
+          "keys": [
+            {"key": "CapsLock", "shift": "", "home": false, "width": 1.75, "space": false, "finger": "left_pinky"},
+            {"key": "a", "shift": "A", "home": true, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "s", "shift": "S", "home": true, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "d", "shift": "D", "home": true, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "f", "shift": "F", "home": true, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "g", "shift": "G", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "h", "shift": "H", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "j", "shift": "J", "home": true, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "k", "shift": "K", "home": true, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": "l", "shift": "L", "home": true, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": ";", "shift": ":", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "'", "shift": "\"", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "Enter", "shift": "", "home": false, "width": 2.25, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 3,
+          "keys": [
+            {"key": "Shift", "shift": "", "home": false, "width": 2.25, "space": false, "finger": "left_pinky"},
+            {"key": "z", "shift": "Z", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "x", "shift": "X", "home": false, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "c", "shift": "C", "home": false, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "v", "shift": "V", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "b", "shift": "B", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "n", "shift": "N", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "m", "shift": "M", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": ",", "shift": "<", "home": false, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": ".", "shift": ">", "home": false, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": "/", "shift": "?", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "Shift", "shift": "", "home": false, "width": 2.75, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 4,
+          "keys": [
+            {"key": "Ctrl", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "left_pinky"},
+            {"key": "Super", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "left_ring"},
+            {"key": "Alt", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "left_middle"},
+            {"key": " ", "shift": "", "home": false, "width": 6.25, "space": true, "finger": "thumb"},
+            {"key": "Alt", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_middle"},
+            {"key": "Super", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_ring"},
+            {"key": "Menu", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_pinky"},
+            {"key": "Ctrl", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_pinky"}
+          ]
+        }
+      ]
+    },
+    "dvorak": {
+      "name": "Dvorak",
+      "description": "Dvorak Simplified Keyboard layout",
+      "rightToLeft": false,
+      "joiningScript": false,
+      "noLazyMode": false,
+      "orderedByFrequency": false,
+      "keymapShowTopRow": true,
+      "additionalAccents": [],
+      "rows": [
+        {
+          "row": 0,
+          "keys": [
+            {"key": "`", "shift": "~", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "1", "shift": "!", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "2", "shift": "@", "home": false, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "3", "shift": "#", "home": false, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "4", "shift": "$", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "5", "shift": "%", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "6", "shift": "^", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "7", "shift": "&", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "8", "shift": "*", "home": false, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": "9", "shift": "(", "home": false, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": "0", "shift": ")", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "[", "shift": "{", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "]", "shift": "}", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "Backspace", "shift": "", "home": false, "width": 2, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 1,
+          "keys": [
+            {"key": "Tab", "shift": "", "home": false, "width": 1.5, "space": false, "finger": "left_pinky"},
+            {"key": "'", "shift": "\"", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": ",", "shift": "<", "home": false, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": ".", "shift": ">", "home": false, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "p", "shift": "P", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "y", "shift": "Y", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "f", "shift": "F", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "g", "shift": "G", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "c", "shift": "C", "home": false, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": "r", "shift": "R", "home": false, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": "l", "shift": "L", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "/", "shift": "?", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "=", "shift": "+", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "\\", "shift": "|", "home": false, "width": 1.5, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 2,
+          "keys": [
+            {"key": "CapsLock", "shift": "", "home": false, "width": 1.75, "space": false, "finger": "left_pinky"},
+            {"key": "a", "shift": "A", "home": true, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "o", "shift": "O", "home": true, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "e", "shift": "E", "home": true, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "u", "shift": "U", "home": true, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "i", "shift": "I", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "d", "shift": "D", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "h", "shift": "H", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "t", "shift": "T", "home": true, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": "n", "shift": "N", "home": true, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": "s", "shift": "S", "home": true, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "-", "shift": "_", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "'", "shift": "\"", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "Enter", "shift": "", "home": false, "width": 2.25, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 3,
+          "keys": [
+            {"key": "Shift", "shift": "", "home": false, "width": 2.25, "space": false, "finger": "left_pinky"},
+            {"key": ";", "shift": ":", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "q", "shift": "Q", "home": false, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "j", "shift": "J", "home": false, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "k", "shift": "K", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "x", "shift": "X", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "b", "shift": "B", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "m", "shift": "M", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "w", "shift": "W", "home": false, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": "v", "shift": "V", "home": false, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": "z", "shift": "Z", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "Shift", "shift": "", "home": false, "width": 2.75, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 4,
+          "keys": [
+            {"key": "Ctrl", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "left_pinky"},
+            {"key": "Super", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "left_ring"},
+            {"key": "Alt", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "left_middle"},
+            {"key": " ", "shift": "", "home": false, "width": 6.25, "space": true, "finger": "thumb"},
+            {"key": "Alt", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_middle"},
+            {"key": "Super", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_ring"},
+            {"key": "Menu", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_pinky"},
+            {"key": "Ctrl", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_pinky"}
+          ]
+        }
+      ]
+    },
+    "colemak": {
+      "name": "Colemak",
+      "description": "Colemak keyboard layout",
+      "rightToLeft": false,
+      "joiningScript": false,
+      "noLazyMode": false,
+      "orderedByFrequency": false,
+      "keymapShowTopRow": true,
+      "additionalAccents": [],
+      "rows": [
+        {
+          "row": 0,
+          "keys": [
+            {"key": "`", "shift": "~", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "1", "shift": "!", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "2", "shift": "@", "home": false, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "3", "shift": "#", "home": false, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "4", "shift": "$", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "5", "shift": "%", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "6", "shift": "^", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "7", "shift": "&", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "8", "shift": "*", "home": false, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": "9", "shift": "(", "home": false, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": "0", "shift": ")", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "-", "shift": "_", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "=", "shift": "+", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "Backspace", "shift": "", "home": false, "width": 2, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 1,
+          "keys": [
+            {"key": "Tab", "shift": "", "home": false, "width": 1.5, "space": false, "finger": "left_pinky"},
+            {"key": "q", "shift": "Q", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "w", "shift": "W", "home": false, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "f", "shift": "F", "home": false, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "p", "shift": "P", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "g", "shift": "G", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "j", "shift": "J", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "l", "shift": "L", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "u", "shift": "U", "home": false, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": "y", "shift": "Y", "home": false, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": ";", "shift": ":", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "[", "shift": "{", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "]", "shift": "}", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "\\", "shift": "|", "home": false, "width": 1.5, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 2,
+          "keys": [
+            {"key": "CapsLock", "shift": "", "home": false, "width": 1.75, "space": false, "finger": "left_pinky"},
+            {"key": "a", "shift": "A", "home": true, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "r", "shift": "R", "home": true, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "s", "shift": "S", "home": true, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "t", "shift": "T", "home": true, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "d", "shift": "D", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "h", "shift": "H", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "n", "shift": "N", "home": true, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "e", "shift": "E", "home": true, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": "i", "shift": "I", "home": true, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": "o", "shift": "O", "home": true, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "'", "shift": "\"", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "Enter", "shift": "", "home": false, "width": 2.25, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 3,
+          "keys": [
+            {"key": "Shift", "shift": "", "home": false, "width": 2.25, "space": false, "finger": "left_pinky"},
+            {"key": "z", "shift": "Z", "home": false, "width": 1, "space": false, "finger": "left_pinky"},
+            {"key": "x", "shift": "X", "home": false, "width": 1, "space": false, "finger": "left_ring"},
+            {"key": "c", "shift": "C", "home": false, "width": 1, "space": false, "finger": "left_middle"},
+            {"key": "v", "shift": "V", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "b", "shift": "B", "home": false, "width": 1, "space": false, "finger": "left_index"},
+            {"key": "k", "shift": "K", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": "m", "shift": "M", "home": false, "width": 1, "space": false, "finger": "right_index"},
+            {"key": ",", "shift": "<", "home": false, "width": 1, "space": false, "finger": "right_middle"},
+            {"key": ".", "shift": ">", "home": false, "width": 1, "space": false, "finger": "right_ring"},
+            {"key": "/", "shift": "?", "home": false, "width": 1, "space": false, "finger": "right_pinky"},
+            {"key": "Shift", "shift": "", "home": false, "width": 2.75, "space": false, "finger": "right_pinky"}
+          ]
+        },
+        {
+          "row": 4,
+          "keys": [
+            {"key": "Ctrl", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "left_pinky"},
+            {"key": "Super", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "left_ring"},
+            {"key": "Alt", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "left_middle"},
+            {"key": " ", "shift": "", "home": false, "width": 6.25, "space": true, "finger": "thumb"},
+            {"key": "Alt", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_middle"},
+            {"key": "Super", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_ring"},
+            {"key": "Menu", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_pinky"},
+            {"key": "Ctrl", "shift": "", "home": false, "width": 1.25, "space": false, "finger": "right_pinky"}
+          ]
+        }
+      ]
+    }
+  }
+}
