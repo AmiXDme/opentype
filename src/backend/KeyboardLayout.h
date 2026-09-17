@@ -31,6 +31,9 @@ private:
     QString m_name = "qwerty";
     bool m_valid = false;
     QVariantList m_rows;
+
+    void loadDefaultLayout();
+    QString defaultFingerForKey(const QString &key) const;
 };
 
 #endif // KEYBOARDLAYOUT_H

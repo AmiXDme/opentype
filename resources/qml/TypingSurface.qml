@@ -1,167 +1,236 @@
 import QtQuick
 import QtQuick.Layouts
+import OpenType 1.0
 
 Rectangle {
     id: root
 
-    property string targetText: ""
-    property string typedText: ""
-    property real wpm: 0
-    property real accuracy: 100
+    property string mode: "words"
+    property string language: "english"
+    property string layout: "qwerty"
+    property int wordCount: 12
+    property int timedSeconds: 60
+
+    property alias wpm: engine.wpm
+    property alias accuracy: engine.accuracy
+    property alias targetText: engine.targetText
+    property alias typedText: engine.typedText
+    property alias running: engine.running
+    property alias elapsedMs: engine.elapsedMs
+    property int correctCount: engine.correctCount
+    property int errorCount: engine.errorCount
     property real progress: 0
-    property bool running: false
 
-    property int targetPosition: 0
-    property int correctCount: 0
-    property int errorCount: 0
-    property int totalKeystrokes: 0
-    property real elapsedMs: 0
+    property var keyStats: ([])
+    property var wpmSamples: ([])
 
-    property var keyStats: ({})
+    signal sessionComplete()
+    signal keyTyped(bool correct, string key)
 
     color: "transparent"
     radius: theme.r
 
     focus: true
 
-    Keys.onPressed: function(event) {
-        if (!root.running) {
-            root.running = true
+    TypingEngine {
+        id: engine
+
+        onSessionComplete: {
+            root.progress = 100
+            root.keyStats = engine.getKeyStats()
+            root.wpmSamples = engine.getSamples()
+            root.sessionComplete()
         }
 
-        if (event.text.length > 0 && root.targetPosition < root.targetText.length) {
-            var targetChar = root.targetText.charAt(root.targetPosition)
-            var correct = event.text === targetChar
+        onKeyTyped: function(correct, key) {
+            root.keyTyped(correct, key)
+        }
 
-            root.totalKeystrokes++
-
-            if (correct) {
-                root.correctCount++
-            } else {
-                root.errorCount++
+        onWpmChanged: {
+            if (engine.running) {
+                var samples = root.wpmSamples
+                samples.push({ wpm: engine.wpm, err: correctCount < errorCount ? 1 : 0 })
+                root.wpmSamples = samples
             }
+        }
 
-            var key = event.text
-            if (root.keyStats[key]) {
-                root.keyStats[key].attempts++
-                if (correct) root.keyStats[key].correct++
-                else root.keyStats[key].errors++
-                root.keyStats[key].errorRate = root.keyStats[key].errors / root.keyStats[key].attempts
-            } else {
-                root.keyStats[key] = {
-                    key: key,
-                    attempts: 1,
-                    correct: correct ? 1 : 0,
-                    errors: correct ? 0 : 1,
-                    errorRate: correct ? 0 : 1
-                }
-            }
+        onTargetTextChanged: {
+            root.progress = engine.targetText.length > 0
+                ? (engine.targetPosition / engine.targetText.length) * 100
+                : 0
+        }
 
-            root.typedText += event.text
-            root.targetPosition++
+        onTargetPositionChanged: {
+            root.progress = engine.targetText.length > 0
+                ? (engine.targetPosition / engine.targetText.length) * 100
+                : 0
+        }
+    }
 
-            if (root.totalKeystrokes > 0) {
-                root.accuracy = (root.correctCount / root.totalKeystrokes) * 100
-            }
+    TextSource {
+        id: textSource
+    }
 
-            root.progress = (root.targetPosition / root.targetText.length) * 100
+    Timer {
+        id: blinkTimer
+        interval: 530
+        running: true
+        repeat: true
+        property bool visible: true
+        onTriggered: visible = !visible
+    }
 
-            var minutes = root.elapsedMs / 60000
-            if (minutes > 0) {
-                root.wpm = (root.correctCount / 5) / minutes
-            }
+    Keys.onPressed: function(event) {
+        if (event.key === Qt.Key_Backspace) {
+            event.accepted = true
+            return
+        }
 
-            if (root.targetPosition >= root.targetText.length) {
-                root.running = false
-                root.sessionComplete()
-            }
+        if (!engine.running && event.text.length > 0) {
+            engine.startSession(root.mode, root.language, root.layout)
+        }
+
+        if (event.text.length > 0) {
+            engine.processKey(event.text.charAt(0))
         }
 
         event.accepted = true
     }
 
-    Timer {
-        id: timer
-        interval: 100
-        running: root.running
-        repeat: true
-        onTriggered: {
-            root.elapsedMs += 100
-            var minutes = root.elapsedMs / 60000
-            if (minutes > 0) {
-                root.wpm = (root.correctCount / 5) / minutes
-            }
-        }
-    }
-
     ColumnLayout {
         anchors.fill: parent
+        anchors.margins: 24
         spacing: 16
 
-        Text {
+        Rectangle {
             Layout.fillWidth: true
-            text: root.targetText || "Click here and start typing"
-            color: theme.textDim
-            font.family: theme.mono
-            font.pixelSize: 20
-            wrapMode: Text.WordWrap
-            maximumLineCount: 3
-        }
+            Layout.fillHeight: true
+            color: "transparent"
+            radius: theme.r
 
-        Text {
-            Layout.fillWidth: true
-            text: {
-                if (!root.typedText) return ""
-                var result = ""
-                for (var i = 0; i < root.typedText.length; i++) {
-                    var targetChar = root.targetText.charAt(i)
-                    var typedChar = root.typedText.charAt(i)
-                    if (typedChar === targetChar) {
-                        result += "<span style='color:" + theme.good + "'>" + typedChar + "</span>"
-                    } else {
-                        result += "<span style='color:" + theme.error + ";text-decoration:underline'>" + typedChar + "</span>"
-                    }
+            Flickable {
+                id: textFlickable
+                anchors.fill: parent
+                contentWidth: textDisplay.width
+                contentHeight: textDisplay.height
+                clip: true
+                flickableDirection: Flickable.VerticalFlick
+
+                Text {
+                    id: textDisplay
+                    width: textFlickable.width
+                    text: root.buildDisplayText()
+                    color: theme.text
+                    font.family: theme.mono
+                    font.pixelSize: 22
+                    wrapMode: Text.WordWrap
+                    textFormat: Text.RichText
+                    lineHeight: 1.6
                 }
-                return result
             }
-            color: theme.text
-            font.family: theme.mono
-            font.pixelSize: 20
-            wrapMode: Text.WordWrap
-            maximumLineCount: 3
-            textFormat: Text.RichText
+
+            Text {
+                anchors.centerIn: parent
+                visible: !engine.targetText || engine.targetText.length === 0
+                text: "Click here and start typing"
+                color: theme.textDim
+                font.family: theme.mono
+                font.pixelSize: 22
+            }
         }
 
-        Item { Layout.fillHeight: true }
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 1
+            color: theme.border
+        }
 
         Heatmap {
             Layout.fillWidth: true
-            Layout.preferredHeight: 160
-            stats: {
-                var list = []
-                for (var key in root.keyStats) {
-                    list.push(root.keyStats[key])
-                }
-                return list
-            }
+            Layout.preferredHeight: 140
+            stats: root.keyStats
         }
     }
 
-    signal sessionComplete()
+    function buildDisplayText() {
+        var target = engine.targetText
+        var typed = engine.typedText
+        if (!target || target.length === 0) return ""
 
-    function startSession(mode, language, layout) {
-        root.targetText = "the quick brown fox jumps over the lazy dog"
-        root.typedText = ""
-        root.targetPosition = 0
-        root.correctCount = 0
-        root.errorCount = 0
-        root.totalKeystrokes = 0
-        root.elapsedMs = 0
-        root.wpm = 0
-        root.accuracy = 100
+        var result = ""
+        for (var i = 0; i < target.length; i++) {
+            var ch = target.charAt(i)
+
+            if (i < typed.length) {
+                var typedChar = typed.charAt(i)
+                if (typedChar === ch) {
+                    result += "<span style='color:" + theme.good + "'>" + _escapeHtml(ch) + "</span>"
+                } else {
+                    result += "<span style='color:" + theme.error + ";background:" + Qt.rgba(theme.error.r, theme.error.g, theme.error.b, 0.2) + ";border-radius:2px'>" + _escapeHtml(ch) + "</span>"
+                }
+            } else if (i === typed.length) {
+                var cursorChar = blinkTimer.visible ? "\u2588" : " "
+                result += "<span style='color:" + theme.caret + ";font-weight:bold'>" + cursorChar + "</span>"
+                result += "<span style='color:" + theme.textDim + "'>" + _escapeHtml(ch) + "</span>"
+            } else {
+                result += "<span style='color:" + theme.textDim + "'>" + _escapeHtml(ch) + "</span>"
+            }
+        }
+
+        if (typed.length >= target.length) {
+            var cursorChar2 = blinkTimer.visible ? "\u2588" : " "
+            result += "<span style='color:" + theme.caret + ";font-weight:bold'>" + cursorChar2 + "</span>"
+        }
+
+        return result
+    }
+
+    function _escapeHtml(ch) {
+        if (ch === "&") return "&amp;"
+        if (ch === "<") return "&lt;"
+        if (ch === ">") return "&gt;"
+        if (ch === "\"") return "&quot;"
+        if (ch === "'") return "&#39;"
+        return ch
+    }
+
+    function startSession() {
+        root.wpmSamples = []
+        root.keyStats = []
         root.progress = 0
-        root.running = false
-        root.keyStats = {}
+
+        var text = ""
+        if (root.mode === "words") {
+            text = textSource.generateWords(root.wordCount)
+        } else if (root.mode === "timed") {
+            text = textSource.generateTimed(root.timedSeconds)
+        } else if (root.mode === "quote") {
+            text = textSource.generateQuote()
+        } else if (root.mode === "adaptive") {
+            var weakKeys = textSource.getAdaptiveKeys(5)
+            text = textSource.generateAdaptiveText(weakKeys, root.wordCount)
+        }
+
+        engine.setTargetText(text)
+        engine.startSession(root.mode, root.language, root.layout)
         root.forceActiveFocus()
+    }
+
+    function stopSession() {
+        engine.endSession()
+    }
+
+    function getSessionData() {
+        return {
+            wpm: engine.wpm,
+            rawWpm: engine.rawWpm,
+            accuracy: engine.accuracy,
+            time: engine.elapsedMs / 1000,
+            correct: engine.correctCount,
+            errors: engine.errorCount,
+            samples: root.wpmSamples,
+            keyStats: root.keyStats,
+            mode: root.mode
+        }
     }
 }

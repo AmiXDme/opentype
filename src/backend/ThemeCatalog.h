@@ -21,6 +21,8 @@ public:
 
 private:
     void loadThemes();
+    void loadBuiltinThemes();
+    void parseJsonThemes(const QJsonDocument &doc);
 
     struct ThemeColors {
         QString bg;

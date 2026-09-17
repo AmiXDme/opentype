@@ -6,12 +6,12 @@ import OpenType 1.0
 Dialog {
     id: root
 
-    property string userTheme: "yaru_dark"
+    property string userTheme: ProfileManager.settings.theme || "yaru_dark"
 
     title: "Theme Picker"
     modal: true
-    width: 500
-    height: 400
+    width: 600
+    height: 500
 
     background: Rectangle {
         color: theme.bg
@@ -20,13 +20,20 @@ Dialog {
         border.width: 1
     }
 
+    onClosed: {
+        if (ProfileManager.settings.theme !== root.userTheme) {
+            ProfileManager.settings.theme = root.userTheme
+            ProfileManager.setSettings(ProfileManager.settings)
+        }
+    }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 16
         spacing: 16
 
         Text {
-            text: "Colour themes"
+            text: "Colour Themes"
             color: theme.text
             font.pixelSize: 18
             font.weight: Font.Bold
@@ -35,13 +42,13 @@ Dialog {
         GridView {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            cellWidth: 100
-            cellHeight: 80
+            cellWidth: 110
+            cellHeight: 90
             model: ThemeCatalog.themeNames()
 
             delegate: Item {
-                width: 90
-                height: 70
+                width: 100
+                height: 80
 
                 Rectangle {
                     anchors.fill: parent
@@ -56,8 +63,8 @@ Dialog {
                         spacing: 4
 
                         Rectangle {
-                            width: 40
-                            height: 16
+                            width: 50
+                            height: 18
                             radius: 4
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: ThemeCatalog.colors(modelData).main || "#e2b714"
@@ -69,6 +76,8 @@ Dialog {
                             font.pixelSize: 9
                             anchors.horizontalCenter: parent.horizontalCenter
                             elide: Text.ElideRight
+                            width: 80
+                            horizontalAlignment: Text.AlignHCenter
                         }
                     }
 
@@ -87,15 +96,21 @@ Dialog {
             Layout.fillWidth: true
 
             Text {
-                text: "Auto light / dark"
-                color: theme.text
-                font.pixelSize: 14
+                text: "Selected: " + root.userTheme
+                color: theme.textMid
+                font.pixelSize: 12
             }
 
             Item { Layout.fillWidth: true }
 
             AppButton {
-                text: "Close"
+                text: "Apply"
+                primary: true
+                onClicked: root.close()
+            }
+
+            AppButton {
+                text: "Cancel"
                 onClicked: root.close()
             }
         }

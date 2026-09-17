@@ -1,5 +1,10 @@
 #include "ThemeCatalog.h"
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 #include <QRandomGenerator>
+#include <QDebug>
 
 ThemeCatalog::ThemeCatalog(QObject *parent)
     : QObject(parent)
@@ -44,6 +49,78 @@ QString ThemeCatalog::randomTheme(const QString &mode) const
 }
 
 void ThemeCatalog::loadThemes()
+{
+    // Try loading from extracted themes.json first
+    QFile file(":/resources/data/themes.json");
+    if (file.open(QIODevice::ReadOnly)) {
+        QByteArray data = file.readAll();
+        QJsonDocument doc = QJsonDocument::fromJson(data);
+        if (!doc.isNull()) {
+            parseJsonThemes(doc);
+            qDebug() << "Loaded" << m_themes.size() << "themes from themes.json";
+            return;
+        }
+    }
+
+    // Fallback to built-in themes
+    loadBuiltinThemes();
+    qDebug() << "Loaded" << m_themes.size() << "builtin themes";
+}
+
+void ThemeCatalog::parseJsonThemes(const QJsonDocument &doc)
+{
+    QJsonObject root = doc.object();
+    if (root.contains("themes")) {
+        QJsonValue themesVal = root["themes"];
+
+        if (themesVal.isArray()) {
+            // Array format: [{"id": "name", ...}]
+            QJsonArray themes = themesVal.toArray();
+            for (const QJsonValue &tVal : themes) {
+                QJsonObject theme = tVal.toObject();
+                QString id = theme["id"].toString();
+                if (id.isEmpty()) continue;
+
+                ThemeColors c;
+                c.bg = theme["bg"].toString();
+                c.main = theme["main"].toString();
+                c.caret = theme["caret"].toString();
+                c.sub = theme["sub"].toString();
+                c.subAlt = theme["subAlt"].toString();
+                c.text = theme["text"].toString();
+                c.error = theme["error"].toString();
+                c.errorExtra = theme["errorExtra"].toString();
+
+                if (!c.bg.isEmpty() && !c.main.isEmpty()) {
+                    m_themes[id] = c;
+                }
+            }
+        } else if (themesVal.isObject()) {
+            // Object format: {"theme_id": {"bg": "...", ...}}
+            QJsonObject themesObj = themesVal.toObject();
+            for (auto it = themesObj.begin(); it != themesObj.end(); ++it) {
+                QString id = it.key();
+                QJsonObject theme = it.value().toObject();
+
+                ThemeColors c;
+                c.bg = theme["bg"].toString();
+                c.main = theme["main"].toString();
+                c.caret = theme["caret"].toString();
+                c.sub = theme["sub"].toString();
+                c.subAlt = theme["subAlt"].toString();
+                c.text = theme["text"].toString();
+                c.error = theme["error"].toString();
+                c.errorExtra = theme["errorExtra"].toString();
+
+                if (!c.bg.isEmpty() && !c.main.isEmpty()) {
+                    m_themes[id] = c;
+                }
+            }
+        }
+    }
+}
+
+void ThemeCatalog::loadBuiltinThemes()
 {
     // Dark themes
     m_themes["yaru_dark"] = {"#2d2d2d", "#e95420", "#e95420", "#77767b", "#242424", "#ffffff", "#ff5555", "#ff5555"};

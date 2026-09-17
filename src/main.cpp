@@ -3,24 +3,23 @@
 #include <QQmlContext>
 #include <QQuickStyle>
 #include <QIcon>
+#include <QQmlEngine>
 
 #include "backend/TypingEngine.h"
 #include "backend/TextSource.h"
 #include "backend/StatsStore.h"
-#include "backend/ProfileManager.h"
-#include "backend/ThemeCatalog.h"
 #include "backend/KeyboardLayout.h"
 #include "backend/ContentCatalog.h"
 #include "backend/SoundMixer.h"
-#include "backend/LicenseController.h"
 #include "backend/TranslationManager.h"
+#include "backend/AppGlobals.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     app.setOrganizationName("OpenType");
     app.setApplicationName("OpenType");
-    app.setApplicationVersion("1.0.0");
+    app.setApplicationVersion("1.1.0");
 
     QQuickStyle::setStyle("Basic");
 
@@ -28,26 +27,20 @@ int main(int argc, char *argv[])
     qmlRegisterType<TextSource>("OpenType", 1, 0, "TextSource");
     qmlRegisterType<StatsStore>("OpenType", 1, 0, "StatsStore");
     qmlRegisterType<KeyboardLayout>("OpenType", 1, 0, "KeyboardLayout");
-    qmlRegisterType<ContentCatalog>("OpenType", 1, 0, "ContentCatalog");
     qmlRegisterType<SoundMixer>("OpenType", 1, 0, "SoundMixer");
     qmlRegisterType<TranslationManager>("OpenType", 1, 0, "TranslationManager");
 
-    qmlRegisterSingletonType<ProfileManager>("OpenType", 1, 0, "ProfileManager",
-        [](QQmlEngine *engine, QJSEngine *) -> QObject * {
-            return new ProfileManager(engine);
-        });
-
-    qmlRegisterSingletonType<ThemeCatalog>("OpenType", 1, 0, "ThemeCatalog",
-        [](QQmlEngine *engine, QJSEngine *) -> QObject * {
-            return new ThemeCatalog(engine);
-        });
-
-    qmlRegisterSingletonType<LicenseController>("OpenType", 1, 0, "LicenseController",
-        [](QQmlEngine *engine, QJSEngine *) -> QObject * {
-            return new LicenseController(engine);
-        });
-
     QQmlApplicationEngine engine;
+
+    // Add the qml directory to import path so Card.qml can be found
+    engine.addImportPath("qrc:/resources/qml");
+
+    AppGlobals *appGlobals = new AppGlobals(&engine);
+    engine.rootContext()->setContextProperty("App", appGlobals);
+
+    ContentCatalog *contentCatalog = new ContentCatalog(&engine);
+    engine.rootContext()->setContextProperty("ContentCatalog", contentCatalog);
+
     engine.load(QUrl(QStringLiteral("qrc:/resources/qml/Main.qml")));
 
     if (engine.rootObjects().isEmpty())

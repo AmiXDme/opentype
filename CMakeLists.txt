@@ -7,7 +7,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Quick QuickControls2 Qml Svg)
+find_package(Qt6 REQUIRED COMPONENTS Core Quick QuickControls2 Qml Svg Multimedia)
 find_package(KF6 COMPONENTS CoreAddons I18n Config ConfigWidgets QUIET)
 
 set(SOURCES
@@ -35,6 +35,7 @@ set(HEADERS
     src/backend/SoundMixer.h
     src/backend/LicenseController.h
     src/backend/TranslationManager.h
+    src/backend/AppGlobals.h
 )
 
 set(RESOURCES
@@ -49,6 +50,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::QuickControls2
     Qt6::Qml
     Qt6::Svg
+    Qt6::Multimedia
 )
 
 if(KF6_FOUND)

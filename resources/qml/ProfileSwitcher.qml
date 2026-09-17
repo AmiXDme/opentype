@@ -1,14 +1,9 @@
 import QtQuick
 import QtQuick.Controls.Basic
 import QtQuick.Layouts
-import OpenType 1.0
 
 Item {
     id: root
-
-    property string current: ""
-
-    signal activated(string value)
 
     RowLayout {
         anchors.centerIn: parent
@@ -18,11 +13,11 @@ Item {
             width: 32
             height: 32
             radius: 16
-            color: ProfileManager.activeColor
+            color: App.profileManager.activeColor
 
             Text {
                 anchors.centerIn: parent
-                text: ProfileManager.activeName.charAt(0).toUpperCase()
+                text: App.profileManager.activeName.charAt(0).toUpperCase()
                 color: "white"
                 font.pixelSize: 14
                 font.bold: true
@@ -30,21 +25,23 @@ Item {
         }
 
         Text {
-            text: ProfileManager.activeName
+            text: App.profileManager.activeName
             color: theme.text
-            font.pixelSize: 14
+            font.pixelSize: 13
             font.weight: Font.Medium
+            Layout.fillWidth: true
+            elide: Text.ElideRight
         }
 
         ComboBox {
             id: profileCombo
-            implicitWidth: 150
-            implicitHeight: 32
-            model: ProfileManager.profiles
+            implicitWidth: 130
+            implicitHeight: 30
+            model: App.profileManager.profiles
 
             background: Rectangle {
                 radius: theme.rsm
-                color: hovered ? theme.surface2 : theme.surface
+                color: profileCombo.hovered ? theme.surface2 : "transparent"
                 border.color: theme.border
                 border.width: 1
             }
@@ -52,13 +49,49 @@ Item {
             contentItem: Text {
                 text: profileCombo.displayText
                 color: theme.text
-                font.pixelSize: 12
+                font.pixelSize: 11
                 verticalAlignment: Text.AlignVCenter
-                leftPadding: 8
+                leftPadding: 6
+            }
+
+            popup: Popup {
+                width: profileCombo.width
+                height: Math.min(contentItem.implicitHeight + 20, 200)
+
+                background: Rectangle {
+                    radius: theme.rsm
+                    color: theme.surface
+                    border.color: theme.border
+                    border.width: 1
+                }
+
+                contentItem: ListView {
+                    clip: true
+                    model: profileCombo.model
+                    currentIndex: profileCombo.currentIndex
+
+                    delegate: ItemDelegate {
+                        id: itemDelegate
+                        width: profileCombo.width
+                        height: 32
+
+                        background: Rectangle {
+                            color: itemDelegate.hovered ? theme.surface2 : "transparent"
+                        }
+
+                        contentItem: Text {
+                            text: modelData
+                            color: theme.text
+                            font.pixelSize: 12
+                            verticalAlignment: Text.AlignVCenter
+                            leftPadding: 8
+                        }
+                    }
+                }
             }
 
             onActivated: {
-                ProfileManager.setActive(modelData)
+                App.profileManager.setActive(modelData)
             }
         }
     }

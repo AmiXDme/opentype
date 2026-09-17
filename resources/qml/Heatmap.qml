@@ -9,8 +9,8 @@ Rectangle {
 
     color: "transparent"
 
-    readonly property real keyU: 38
-    readonly property real keyGap: 6
+    readonly property real keyU: 36
+    readonly property real keyGap: 5
     property var _byKey: ({})
 
     property var keyRows: [
@@ -20,14 +20,24 @@ Rectangle {
         ["z","x","c","v","b","n","m",",",".","/"]
     ]
 
+    property var keyWidths: [
+        [1,1,1,1,1,1,1,1,1,1,1,1,1.5],
+        [1.5,1,1,1,1,1,1,1,1,1,1,1.5],
+        [1.75,1,1,1,1,1,1,1,1,1,2.25],
+        [2.25,1,1,1,1,1,1,1,1,1,2.75]
+    ]
+
     function colorFor(k) {
         var s = _byKey[k]
-        if (!s || s.attempts === 0) return theme.textDim
-        var t = Math.min(1, s.errorRate / 0.25)
-        var r = theme.good.r * (1 - t) + theme.error.r * t
-        var g = theme.good.g * (1 - t) + theme.error.g * t
-        var b = theme.good.b * (1 - t) + theme.error.b * t
-        return Qt.rgba(r, g, b, 1)
+        if (!s || s.attempts === 0) return theme.surface2
+        var errRate = s.errors / s.attempts
+        if (errRate < 0.05) return theme.good
+        if (errRate < 0.15) return theme.accent
+        if (errRate < 0.30) return Qt.rgba(
+            theme.error.r * 0.6 + theme.accent.r * 0.4,
+            theme.error.g * 0.6 + theme.accent.g * 0.4,
+            theme.error.b * 0.6 + theme.accent.b * 0.4, 1)
+        return theme.error
     }
 
     function hasData(k) {
@@ -63,15 +73,10 @@ Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Repeater {
-                    model: {
-                        if (index === 0) return 13
-                        if (index === 1) return 12
-                        if (index === 2) return 11
-                        return 10
-                    }
+                    model: root.keyWidths[index]
 
                     Rectangle {
-                        width: root.keyU
+                        width: root.keyU * modelData + root.keyGap * (modelData - 1)
                         height: root.keyU
                         radius: 4
                         color: root.colorFor(root.getKeyLabel(Repeater.index, index))
@@ -83,7 +88,7 @@ Rectangle {
                                 return k === " " ? "SPACE" : k.toUpperCase()
                             }
                             color: root.hasData(root.getKeyLabel(Repeater.index, index)) ? "#10131a" : theme.textDim
-                            font.pixelSize: 11
+                            font.pixelSize: 10
                             font.weight: Font.DemiBold
                         }
                     }

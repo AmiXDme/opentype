@@ -1,16 +1,19 @@
 import QtQuick
 import QtQuick.Layouts
+import OpenType 1.0
 
 Item {
     id: root
 
-    property real wpm: 0
-    property real rawWpm: 0
-    property real accuracy: 0
-    property real time: 0
-    property int correct: 0
-    property int errors: 0
-    property var samples: []
+    property var resultData: ({})
+
+    property real wpm: resultData.wpm || 0
+    property real rawWpm: resultData.rawWpm || 0
+    property real accuracy: resultData.accuracy || 0
+    property real time: resultData.time || 0
+    property int correct: resultData.correct || 0
+    property int errors: resultData.errors || 0
+    property var samples: resultData.samples || []
 
     signal goHome()
     signal restart()

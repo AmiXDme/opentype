@@ -7,6 +7,8 @@
 #include <QStringList>
 #include <QRandomGenerator>
 
+class ContentCatalog;
+
 class TextSource : public QObject
 {
     Q_OBJECT
@@ -34,10 +36,12 @@ signals:
     void currentLanguageChanged();
 
 private:
-    QStringList m_languages = {"english"};
+    QStringList m_languages;
     QString m_currentLanguage = "english";
     QStringList m_wordList;
     QStringList m_quotes;
+
+    ContentCatalog* getCatalog();
 };
 
 #endif // TEXTSOURCE_H

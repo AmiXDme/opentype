@@ -6,49 +6,71 @@ import OpenType 1.0
 Window {
     id: appWindow
     visible: true
-    width: 1024
-    height: 640
+    width: 1100
+    height: 700
     minimumWidth: 800
     minimumHeight: 500
-    title: "OpenType"
+    title: "OpenType - Typing Tutor"
     color: theme.bg
 
     Theme { id: theme }
 
-    Loader {
-        id: screenLoader
+    property string currentMode: "words"
+    property var lastResults: ({})
+
+    ColumnLayout {
         anchors.fill: parent
-        sourceComponent: homeScreen
-    }
+        spacing: 0
 
-    Component {
-        id: homeScreen
-        HomeScreen {
-            onStartPractice: screenLoader.sourceComponent = practiceScreen
-            onGoStats: screenLoader.sourceComponent = statsScreen
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 48
+            color: theme.surface
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.leftMargin: 24
+                anchors.rightMargin: 24
+                spacing: 12
+
+                Text {
+                    text: "OpenType"
+                    color: theme.text
+                    font.pixelSize: 16
+                    font.bold: true
+                }
+
+                Item { Layout.fillWidth: true }
+
+                ProfileSwitcher {
+                    Layout.preferredWidth: 200
+                    Layout.fillHeight: true
+                }
+
+                NavButton {
+                    text: "\u2699"
+                    implicitWidth: 36
+                    implicitHeight: 36
+                    onClicked: screenLoader.source = "qrc:/resources/qml/screens/ThemePicker.qml"
+                }
+            }
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 1
+            color: theme.border
+        }
+
+        Loader {
+            id: screenLoader
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            source: "qrc:/resources/qml/screens/HomeScreen.qml"
         }
     }
 
-    Component {
-        id: practiceScreen
-        PracticeScreen {
-            onGoHome: screenLoader.sourceComponent = homeScreen
-            onGoResults: function(data) { screenLoader.sourceComponent = resultsView }
-        }
-    }
+    signal goHome()
 
-    Component {
-        id: statsScreen
-        StatsScreen {
-            onGoHome: screenLoader.sourceComponent = homeScreen
-        }
-    }
-
-    Component {
-        id: resultsView
-        ResultsView {
-            onGoHome: screenLoader.sourceComponent = homeScreen
-            onRestart: screenLoader.sourceComponent = practiceScreen
-        }
-    }
+    onGoHome: screenLoader.source = "qrc:/resources/qml/screens/HomeScreen.qml"
 }

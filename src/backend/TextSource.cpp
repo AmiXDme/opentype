@@ -1,8 +1,14 @@
 #include "TextSource.h"
+#include "ContentCatalog.h"
+#include <QQmlEngine>
+#include <QQmlContext>
+#include <QRandomGenerator>
 
 TextSource::TextSource(QObject *parent)
     : QObject(parent)
 {
+    // Use fallback initially, will be updated when ContentCatalog is available
+    m_languages = {"english"};
     m_wordList = {
         "the", "be", "to", "of", "and", "a", "in", "that", "have", "I",
         "it", "for", "not", "on", "with", "he", "as", "you", "do", "at",
@@ -21,7 +27,6 @@ TextSource::TextSource(QObject *parent)
         "write", "like", "so", "these", "her", "long", "make", "thing", "see",
         "him", "two", "has", "look", "more", "day", "could", "go", "come", "did"
     };
-
     m_quotes = {
         "Life is like riding a bicycle. To keep your balance you must keep moving. - Albert Einstein",
         "The only way to do great work is to love what you do. - Steve Jobs",
@@ -36,11 +41,31 @@ void TextSource::setCurrentLanguage(const QString &lang)
     if (m_currentLanguage != lang) {
         m_currentLanguage = lang;
         emit currentLanguageChanged();
+
+        // Try to get ContentCatalog from context
+        ContentCatalog *catalog = getCatalog();
+        if (catalog) {
+            m_wordList = catalog->wordsForLanguage(lang);
+            m_quotes = catalog->quotes(lang);
+        }
     }
+}
+
+ContentCatalog* TextSource::getCatalog()
+{
+    QQmlEngine *engine = qmlEngine(this);
+    if (!engine) return nullptr;
+
+    QObject *ctx = engine->rootContext()->contextProperty("ContentCatalog").value<QObject*>();
+    if (!ctx) return nullptr;
+
+    return qobject_cast<ContentCatalog*>(ctx);
 }
 
 QString TextSource::generateWords(int count)
 {
+    if (m_wordList.isEmpty()) return "";
+
     QStringList words;
     auto *rng = QRandomGenerator::global();
 
@@ -79,7 +104,30 @@ QVariantList TextSource::getAdaptiveKeys(int count)
 
 QString TextSource::generateAdaptiveText(const QVariantList &weakKeys, int wordCount)
 {
-    return generateWords(wordCount);
+    // Filter word list to include words with weak keys
+    QStringList filteredWords;
+    for (const QString &word : m_wordList) {
+        for (const QVariant &kVar : weakKeys) {
+            QString k = kVar.toString();
+            if (word.contains(k, Qt::CaseInsensitive)) {
+                filteredWords.append(word);
+                break;
+            }
+        }
+    }
+
+    if (filteredWords.isEmpty()) {
+        filteredWords = m_wordList;
+    }
+
+    QStringList words;
+    auto *rng = QRandomGenerator::global();
+    for (int i = 0; i < wordCount; i++) {
+        int idx = rng->bounded(filteredWords.size());
+        words.append(filteredWords.at(idx));
+    }
+
+    return words.join(" ");
 }
 
 void TextSource::setWordList(const QStringList &words)

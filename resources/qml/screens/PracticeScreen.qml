@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import OpenType 1.0
 
 Item {
     id: root
@@ -14,7 +15,7 @@ Item {
     property alias accuracy: typingSurface.accuracy
     property alias progress: typingSurface.progress
 
-    signal goResults(var data)
+    signal sessionComplete(var stats)
     signal goHome()
 
     ColumnLayout {
@@ -91,6 +92,6 @@ Item {
     }
 
     function endSession(stats) {
-        root.goResults(stats)
+        root.sessionComplete(stats)
     }
 }
