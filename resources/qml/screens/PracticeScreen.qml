@@ -18,6 +18,19 @@ Item {
     signal sessionComplete(var stats)
     signal goHome()
 
+    Component.onCompleted: {
+        // Delay slightly to ensure all bindings and components are initialized
+        initTimer.start()
+    }
+
+    Timer {
+        id: initTimer
+        interval: 100
+        running: false
+        repeat: false
+        onTriggered: root.startSession()
+    }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 16
