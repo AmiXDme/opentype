@@ -27,5 +27,10 @@
         <file>resources/data/themes.json</file>
         <file>resources/data/languages.json</file>
         <file>resources/data/keyboard-layouts.json</file>
+        <file alias="resources/sounds/key-click.wav">resources/sounds/sound_001.wav</file>
+        <file alias="resources/sounds/key-error.wav">resources/sounds/sound_071.wav</file>
+        <file alias="resources/sounds/key-space.wav">resources/sounds/sound_075.wav</file>
+        <file alias="resources/sounds/complete.wav">resources/sounds/sound_000.wav</file>
+        <file alias="resources/sounds/notification.wav">resources/sounds/sound_079.wav</file>
     </qresource>
 </RCC>

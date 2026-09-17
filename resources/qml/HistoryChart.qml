@@ -29,7 +29,7 @@ Canvas {
 
         var stepX = width / (values.length - 1)
 
-        ctx.strokeStyle = Theme.accent
+        ctx.strokeStyle = theme.accent
         ctx.lineWidth = 2
         ctx.lineJoin = "round"
 
@@ -44,8 +44,8 @@ Canvas {
         ctx.stroke()
 
         var gradient = ctx.createLinearGradient(0, 0, 0, height)
-        gradient.addColorStop(0, Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.3))
-        gradient.addColorStop(1, Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0))
+        gradient.addColorStop(0, Qt.rgba(theme.accent.r, theme.accent.g, theme.accent.b, 0.3))
+        gradient.addColorStop(1, Qt.rgba(theme.accent.r, theme.accent.g, theme.accent.b, 0))
 
         ctx.fillStyle = gradient
         ctx.lineTo(width, height)

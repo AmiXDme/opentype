@@ -6,17 +6,17 @@ Item {
 
     property real value: 0
     property real cap: 0
-    property color line: Theme.accent
-    property color fill: Theme.good
+    property color line: theme.accent
+    property color fill: theme.good
     property bool on: false
-    property color onColor: Theme.text
+    property color onColor: theme.text
 
     implicitHeight: 8
 
     Rectangle {
         anchors.fill: parent
         radius: height / 2
-        color: Theme.surface
+        color: theme.surface
 
         Rectangle {
             width: parent.width * Math.min(1, root.value / (root.cap > 0 ? root.cap : 1))

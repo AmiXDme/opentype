@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
+import OpenType 1.0
 
 Dialog {
     id: root
@@ -13,9 +14,9 @@ Dialog {
     height: 400
 
     background: Rectangle {
-        color: Theme.bg
-        radius: Theme.rlg
-        border.color: Theme.border
+        color: theme.bg
+        radius: theme.rlg
+        border.color: theme.border
         border.width: 1
     }
 
@@ -26,7 +27,7 @@ Dialog {
 
         Text {
             text: "Colour themes"
-            color: Theme.text
+            color: theme.text
             font.pixelSize: 18
             font.weight: Font.Bold
         }
@@ -45,9 +46,9 @@ Dialog {
                 Rectangle {
                     anchors.fill: parent
                     anchors.margins: 4
-                    radius: Theme.rsm
+                    radius: theme.rsm
                     color: ThemeCatalog.colors(modelData).bg || "#1a1a1a"
-                    border.color: root.userTheme === modelData ? Theme.accent : Theme.border
+                    border.color: root.userTheme === modelData ? theme.accent : theme.border
                     border.width: root.userTheme === modelData ? 2 : 1
 
                     Column {
@@ -87,7 +88,7 @@ Dialog {
 
             Text {
                 text: "Auto light / dark"
-                color: Theme.text
+                color: theme.text
                 font.pixelSize: 14
             }
 

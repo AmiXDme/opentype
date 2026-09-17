@@ -11,9 +11,9 @@ Dialog {
     height: 300
 
     background: Rectangle {
-        color: Theme.bg
-        radius: Theme.rlg
-        border.color: Theme.border
+        color: theme.bg
+        radius: theme.rlg
+        border.color: theme.border
         border.width: 1
     }
 
@@ -24,7 +24,7 @@ Dialog {
 
         Text {
             text: "OpenType"
-            color: Theme.text
+            color: theme.text
             font.pixelSize: 24
             font.bold: true
             Layout.alignment: Qt.AlignHCenter
@@ -32,21 +32,21 @@ Dialog {
 
         Text {
             text: "Open-source typing tutor"
-            color: Theme.textMid
+            color: theme.textMid
             font.pixelSize: 14
             Layout.alignment: Qt.AlignHCenter
         }
 
         Text {
             text: "Version 1.0.0"
-            color: Theme.textDim
+            color: theme.textDim
             font.pixelSize: 12
             Layout.alignment: Qt.AlignHCenter
         }
 
         Text {
             text: "Reverse engineered from TypingMaster v2.0.1\nby Keshav Bhatt (KTechpit)"
-            color: Theme.textDim
+            color: theme.textDim
             font.pixelSize: 11
             horizontalAlignment: Text.AlignHCenter
             Layout.alignment: Qt.AlignHCenter

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "home-row",
+    "title": "Home Row Basics",
+    "layout": "qwerty",
+    "description": "Introduce the eight home-row keys: a s d f  j k l ;",
+    "steps": [
+      "asdf jkl; asdf jkl;",
+      "aa ss dd ff jj kk ll ;;",
+      "fj fj dk dk sl sl a; a;",
+      "sad lad fall dash flask jak"
+    ]
+  }
+]

@@ -20,7 +20,7 @@ Rectangle {
     property var keyStats: ({})
 
     color: "transparent"
-    radius: Theme.r
+    radius: theme.r
 
     focus: true
 
@@ -101,8 +101,8 @@ Rectangle {
         Text {
             Layout.fillWidth: true
             text: root.targetText || "Click here and start typing"
-            color: Theme.textDim
-            font.family: Theme.mono
+            color: theme.textDim
+            font.family: theme.mono
             font.pixelSize: 20
             wrapMode: Text.WordWrap
             maximumLineCount: 3
@@ -117,15 +117,15 @@ Rectangle {
                     var targetChar = root.targetText.charAt(i)
                     var typedChar = root.typedText.charAt(i)
                     if (typedChar === targetChar) {
-                        result += "<span style='color:" + Theme.good + "'>" + typedChar + "</span>"
+                        result += "<span style='color:" + theme.good + "'>" + typedChar + "</span>"
                     } else {
-                        result += "<span style='color:" + Theme.error + ";text-decoration:underline'>" + typedChar + "</span>"
+                        result += "<span style='color:" + theme.error + ";text-decoration:underline'>" + typedChar + "</span>"
                     }
                 }
                 return result
             }
-            color: Theme.text
-            font.family: Theme.mono
+            color: theme.text
+            font.family: theme.mono
             font.pixelSize: 20
             wrapMode: Text.WordWrap
             maximumLineCount: 3

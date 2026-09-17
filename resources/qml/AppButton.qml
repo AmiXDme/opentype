@@ -10,15 +10,15 @@ Button {
     implicitHeight: 40
 
     background: Rectangle {
-        radius: Theme.r
-        color: root.primary ? Theme.accent : (root.hovered ? Theme.surface2 : Theme.surface)
-        border.color: Theme.border
+        radius: theme.r
+        color: root.primary ? theme.accent : (root.hovered ? theme.surface2 : theme.surface)
+        border.color: theme.border
         border.width: 1
     }
 
     contentItem: Text {
         text: root.text
-        color: root.primary ? Theme.bg : Theme.text
+        color: root.primary ? theme.bg : theme.text
         font.pixelSize: 14
         font.weight: Font.Medium
         horizontalAlignment: Text.AlignHCenter

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls.Basic
 import QtQuick.Layouts
+import OpenType 1.0
 
 Item {
     id: root
@@ -30,7 +31,7 @@ Item {
 
         Text {
             text: ProfileManager.activeName
-            color: Theme.text
+            color: theme.text
             font.pixelSize: 14
             font.weight: Font.Medium
         }
@@ -42,15 +43,15 @@ Item {
             model: ProfileManager.profiles
 
             background: Rectangle {
-                radius: Theme.rsm
-                color: hovered ? Theme.surface2 : Theme.surface
-                border.color: Theme.border
+                radius: theme.rsm
+                color: hovered ? theme.surface2 : theme.surface
+                border.color: theme.border
                 border.width: 1
             }
 
             contentItem: Text {
                 text: profileCombo.displayText
-                color: Theme.text
+                color: theme.text
                 font.pixelSize: 12
                 verticalAlignment: Text.AlignVCenter
                 leftPadding: 8

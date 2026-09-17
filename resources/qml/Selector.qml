@@ -15,15 +15,15 @@ ComboBox {
     model: root.options
 
     background: Rectangle {
-        radius: Theme.r
-        color: Theme.surface
-        border.color: Theme.border
+        radius: theme.r
+        color: theme.surface
+        border.color: theme.border
         border.width: 1
     }
 
     contentItem: Text {
         text: root.displayText
-        color: Theme.text
+        color: theme.text
         font.pixelSize: 14
         verticalAlignment: Text.AlignVCenter
         leftPadding: 12
@@ -34,9 +34,9 @@ ComboBox {
         height: Math.min(contentItem.implicitHeight + 20, 300)
 
         background: Rectangle {
-            radius: Theme.r
-            color: Theme.surface
-            border.color: Theme.border
+            radius: theme.r
+            color: theme.surface
+            border.color: theme.border
             border.width: 1
         }
 
@@ -50,12 +50,12 @@ ComboBox {
                 height: 36
 
                 background: Rectangle {
-                    color: hovered ? Theme.surface2 : "transparent"
+                    color: hovered ? theme.surface2 : "transparent"
                 }
 
                 contentItem: Text {
                     text: modelData
-                    color: Theme.text
+                    color: theme.text
                     font.pixelSize: 14
                     verticalAlignment: Text.AlignVCenter
                     leftPadding: 12

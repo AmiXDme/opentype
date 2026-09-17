@@ -5,6 +5,7 @@ Item {
     id: root
 
     signal startPractice(string mode)
+    signal goStats()
 
     ColumnLayout {
         anchors.fill: parent
@@ -13,10 +14,20 @@ Item {
 
         Text {
             text: "WELCOME BACK"
-            color: Theme.text
+            color: theme.text
             font.pixelSize: 28
             font.bold: true
             Layout.alignment: Qt.AlignHCenter
+        }
+
+        RowLayout {
+            Layout.alignment: Qt.AlignHCenter
+            spacing: 16
+
+            NavButton {
+                text: "Statistics"
+                onClicked: root.goStats()
+            }
         }
 
         GridLayout {
@@ -26,10 +37,11 @@ Item {
             rowSpacing: 16
             columnSpacing: 16
 
-            Card {
+            Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                pad: 24
+                radius: theme.rlg
+                color: theme.surface
 
                 MouseArea {
                     anchors.fill: parent
@@ -43,7 +55,7 @@ Item {
 
                     Text {
                         text: "Words"
-                        color: Theme.text
+                        color: theme.text
                         font.pixelSize: 20
                         font.bold: true
                         Layout.alignment: Qt.AlignHCenter
@@ -51,17 +63,18 @@ Item {
 
                     Text {
                         text: "Type random words"
-                        color: Theme.textMid
+                        color: theme.textMid
                         font.pixelSize: 12
                         Layout.alignment: Qt.AlignHCenter
                     }
                 }
             }
 
-            Card {
+            Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                pad: 24
+                radius: theme.rlg
+                color: theme.surface
 
                 MouseArea {
                     anchors.fill: parent
@@ -75,7 +88,7 @@ Item {
 
                     Text {
                         text: "Timed"
-                        color: Theme.text
+                        color: theme.text
                         font.pixelSize: 20
                         font.bold: true
                         Layout.alignment: Qt.AlignHCenter
@@ -83,17 +96,18 @@ Item {
 
                     Text {
                         text: "Type for a set time"
-                        color: Theme.textMid
+                        color: theme.textMid
                         font.pixelSize: 12
                         Layout.alignment: Qt.AlignHCenter
                     }
                 }
             }
 
-            Card {
+            Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                pad: 24
+                radius: theme.rlg
+                color: theme.surface
 
                 MouseArea {
                     anchors.fill: parent
@@ -107,7 +121,7 @@ Item {
 
                     Text {
                         text: "Quote"
-                        color: Theme.text
+                        color: theme.text
                         font.pixelSize: 20
                         font.bold: true
                         Layout.alignment: Qt.AlignHCenter
@@ -115,17 +129,18 @@ Item {
 
                     Text {
                         text: "Type famous quotes"
-                        color: Theme.textMid
+                        color: theme.textMid
                         font.pixelSize: 12
                         Layout.alignment: Qt.AlignHCenter
                     }
                 }
             }
 
-            Card {
+            Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                pad: 24
+                radius: theme.rlg
+                color: theme.surface
 
                 MouseArea {
                     anchors.fill: parent
@@ -139,7 +154,7 @@ Item {
 
                     Text {
                         text: "Adaptive"
-                        color: Theme.text
+                        color: theme.text
                         font.pixelSize: 20
                         font.bold: true
                         Layout.alignment: Qt.AlignHCenter
@@ -147,7 +162,7 @@ Item {
 
                     Text {
                         text: "Target your weakest keys"
-                        color: Theme.textMid
+                        color: theme.textMid
                         font.pixelSize: 12
                         Layout.alignment: Qt.AlignHCenter
                     }

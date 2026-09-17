@@ -4,7 +4,7 @@ Canvas {
     id: root
 
     property var values: []
-    property color line: Theme.accent
+    property color line: theme.accent
     property bool autoScale: false
 
     implicitHeight: 60

@@ -7,13 +7,13 @@ Rectangle {
     property string value: ""
     property string label: ""
     property string unit: ""
-    property color valueColor: Theme.text
-    property color fillColor: Theme.accent
+    property color valueColor: theme.text
+    property color fillColor: theme.accent
 
     width: 120
     height: 80
-    radius: Theme.r
-    color: Theme.surface
+    radius: theme.r
+    color: theme.surface
 
     ColumnLayout {
         anchors.fill: parent
@@ -32,7 +32,7 @@ Rectangle {
         Text {
             Layout.fillWidth: true
             text: root.label
-            color: Theme.textMid
+            color: theme.textMid
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
         }

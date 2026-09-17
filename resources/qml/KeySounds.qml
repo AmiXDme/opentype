@@ -1,4 +1,5 @@
 import QtQuick
+import OpenType 1.0
 
 Item {
     id: root
@@ -7,15 +8,20 @@ Item {
     property string errorPack: "off"
     property real volume: 0.5
 
+    SoundMixer {
+        id: mixer
+        volume: root.volume
+    }
+
     function playClick() {
-        SoundMixer.playClick(clickPack)
+        mixer.playClick(root.clickPack)
     }
 
     function playError() {
-        SoundMixer.playError(errorPack)
+        mixer.playError(root.errorPack)
     }
 
     function previewPack(pack) {
-        SoundMixer.preview(pack)
+        mixer.preview(pack)
     }
 }

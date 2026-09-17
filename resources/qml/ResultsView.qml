@@ -12,6 +12,9 @@ Item {
     property int errors: 0
     property var samples: []
 
+    signal goHome()
+    signal restart()
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 16
@@ -48,6 +51,23 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
             samples: root.samples
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignHCenter
+            spacing: 16
+
+            NavButton {
+                text: "Home"
+                onClicked: root.goHome()
+            }
+
+            AppButton {
+                text: "Type Again"
+                primary: true
+                onClicked: root.restart()
+            }
         }
     }
 }

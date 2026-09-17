@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
+import OpenType 1.0
 
 Dialog {
     id: root
@@ -11,9 +12,9 @@ Dialog {
     height: 350
 
     background: Rectangle {
-        color: Theme.bg
-        radius: Theme.rlg
-        border.color: Theme.border
+        color: theme.bg
+        radius: theme.rlg
+        border.color: theme.border
         border.width: 1
     }
 
@@ -24,7 +25,7 @@ Dialog {
 
         Text {
             text: "Account"
-            color: Theme.text
+            color: theme.text
             font.pixelSize: 18
             font.weight: Font.Bold
         }
@@ -38,13 +39,13 @@ Dialog {
 
                 Text {
                     text: "Account ID"
-                    color: Theme.textMid
+                    color: theme.textMid
                     font.pixelSize: 12
                 }
 
                 Text {
                     text: LicenseController.tier === "pro" ? "Pro License Active" : "Free Tier"
-                    color: LicenseController.tier === "pro" ? Theme.good : Theme.text
+                    color: LicenseController.tier === "pro" ? theme.good : theme.text
                     font.pixelSize: 14
                     font.weight: Font.Medium
                 }
@@ -53,7 +54,7 @@ Dialog {
                     text: LicenseController.tier === "pro"
                         ? "All features unlocked"
                         : "Upgrade to Pro for random themes and advanced analytics"
-                    color: Theme.textDim
+                    color: theme.textDim
                     font.pixelSize: 12
                 }
             }

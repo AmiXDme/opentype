@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import OpenType 1.0
 
 Item {
     id: root
@@ -27,7 +28,7 @@ Item {
 
             Text {
                 text: "Statistics"
-                color: Theme.text
+                color: theme.text
                 font.pixelSize: 18
                 font.weight: Font.Bold
             }
@@ -67,7 +68,8 @@ Item {
             pad: 16
 
             HistoryChart {
-                anchors.fill: parent
+                Layout.fillWidth: true
+                Layout.fillHeight: true
                 values: {
                     var wpmList = []
                     var sessions = statsStore.sessions()
@@ -83,7 +85,6 @@ Item {
             text: "Export to CSV"
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
-                // Export functionality
             }
         }
     }

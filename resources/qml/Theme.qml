@@ -1,11 +1,11 @@
-pragma Singleton
 import QtQuick
+import OpenType 1.0
 
 QtObject {
     id: theme
 
     property var _c: ThemeCatalog.colors(activePreset)
-    property bool dark: Qt.colorEqual(_c.bg, "#000000") || _lum(_c.bg) < 0.5
+    property bool dark: _lum(_c.bg) < 0.5
 
     readonly property color bg: _c.bg || "#1a1a1a"
     readonly property color main: _c.main || "#e2b714"
@@ -36,16 +36,13 @@ QtObject {
     property string activePreset: "yaru_dark"
 
     function _lum(c) {
-        var r = Qt.red(c) / 255
-        var g = Qt.green(c) / 255
-        var b = Qt.blue(c) / 255
+        var hex = String(c).replace("#", "")
+        if (hex.length === 3) {
+            hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2]
+        }
+        var r = parseInt(hex.substring(0, 2), 16) / 255
+        var g = parseInt(hex.substring(2, 4), 16) / 255
+        var b = parseInt(hex.substring(4, 6), 16) / 255
         return 0.2126 * r + 0.7152 * g + 0.0722 * b
-    }
-
-    function _mix(a, b, t) {
-        var r = Qt.red(a) * (1 - t) + Qt.red(b) * t
-        var g = Qt.green(a) * (1 - t) + Qt.green(b) * t
-        var bb = Qt.blue(a) * (1 - t) + Qt.blue(b) * t
-        return Qt.rgba(r / 255, g / 255, bb / 255, 1)
     }
 }

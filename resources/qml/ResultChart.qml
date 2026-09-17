@@ -24,7 +24,7 @@ Canvas {
 
         var stepX = width / (samples.length - 1)
 
-        ctx.strokeStyle = Theme.accent
+        ctx.strokeStyle = theme.accent
         ctx.lineWidth = 2
         ctx.lineJoin = "round"
 
@@ -38,7 +38,7 @@ Canvas {
         }
         ctx.stroke()
 
-        ctx.fillStyle = Theme.error
+        ctx.fillStyle = theme.error
         for (var k = 0; k < samples.length; k++) {
             if (samples[k].err > 0) {
                 var ex = k * stepX

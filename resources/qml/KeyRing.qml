@@ -10,13 +10,13 @@ Item {
     width: 38
     height: 38
 
-    readonly property color _tone: mastery >= 0.85 ? Theme.good
-                                   : mastery >= 0.6 ? Theme.accent
-                                   : Theme.error
+    readonly property color _tone: mastery >= 0.85 ? theme.good
+                                   : mastery >= 0.6 ? theme.accent
+                                   : theme.error
 
     Rectangle {
         anchors.fill: parent
-        radius: Theme.rsm
+        radius: theme.rsm
         color: "transparent"
         border.color: root._tone
         border.width: 2
@@ -45,7 +45,7 @@ Item {
         Text {
             anchors.centerIn: parent
             text: root.keyChar.toUpperCase()
-            color: Theme.text
+            color: theme.text
             font.pixelSize: 12
             font.weight: Font.DemiBold
         }

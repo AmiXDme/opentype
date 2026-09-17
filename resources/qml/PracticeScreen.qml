@@ -14,7 +14,7 @@ Item {
     property alias accuracy: typingSurface.accuracy
     property alias progress: typingSurface.progress
 
-    signal sessionComplete(var stats)
+    signal goResults(var data)
     signal goHome()
 
     ColumnLayout {
@@ -34,7 +34,7 @@ Item {
 
             Text {
                 text: root.mode.charAt(0).toUpperCase() + root.mode.slice(1) + " Practice"
-                color: Theme.text
+                color: theme.text
                 font.pixelSize: 18
                 font.weight: Font.Bold
             }
@@ -49,7 +49,16 @@ Item {
 
             TypingSurface {
                 id: typingSurface
-                anchors.fill: parent
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                onSessionComplete: root.endSession({
+                    wpm: typingSurface.wpm,
+                    accuracy: typingSurface.accuracy,
+                    progress: typingSurface.progress,
+                    correct: typingSurface.correctCount,
+                    errors: typingSurface.errorCount,
+                    time: typingSurface.elapsedMs / 1000
+                })
             }
         }
 
@@ -82,6 +91,6 @@ Item {
     }
 
     function endSession(stats) {
-        root.sessionComplete(stats)
+        root.goResults(stats)
     }
 }
