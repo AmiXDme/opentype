@@ -1,0 +1,21 @@
+app-id: io.github.AmiXDme.OpenType
+runtime: org.kde.Platform
+runtime-version: '6.8'
+sdk: org.kde.Sdk
+command: OpenType
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --device=dri
+modules:
+  - name: opentype
+    buildsystem: cmake
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: git
+        url: https://github.com/AmiXDme/opentype.git
+        tag: v1.4.0

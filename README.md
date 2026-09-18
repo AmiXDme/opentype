@@ -2,6 +2,29 @@
 
 Open-source typing tutor - Reverse engineered from TypingMaster v2.0.1
 
+## Download (any Linux distro)
+
+**AppImage (recommended — no install, runs everywhere):**
+
+```bash
+chmod +x OpenType-1.4.0-x86_64.AppImage
+./OpenType-1.4.0-x86_64.AppImage
+```
+
+**Flatpak (sandboxed, distro-independent):**
+
+```bash
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install org.kde.Platform//6.8 org.kde.Sdk//6.8
+flatpak-builder --user --install build-dir io.github.AmiXDme.OpenType.yml
+flatpak run io.github.AmiXDme.OpenType
+```
+
+> Note: the AppImage bundles its own Qt 6 libraries, so it runs on Ubuntu,
+> Fedora, Arch, Mint and others without installing dependencies. It was built
+> on a recent distro, so very old releases (pre-2023 glibc) should prefer the
+> Flatpak instead.
+
 ## Features
 
 - 4 practice modes: Words, Timed, Quote, Adaptive Drills

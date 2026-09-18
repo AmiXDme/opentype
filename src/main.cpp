@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     app.setOrganizationName("OpenType");
     app.setApplicationName("OpenType");
-    app.setApplicationVersion("1.1.0");
+    app.setApplicationVersion("1.4.0");
     app.setWindowIcon(QIcon(QStringLiteral(":/resources/icons/opentype.png")));
 
     QQuickStyle::setStyle("Basic");
