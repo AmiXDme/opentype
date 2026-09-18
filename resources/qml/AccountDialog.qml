@@ -44,14 +44,14 @@ Dialog {
                 }
 
                 Text {
-                    text: LicenseController.tier === "pro" ? "Pro License Active" : "Free Tier"
-                    color: LicenseController.tier === "pro" ? theme.good : theme.text
+                    text: App.licenseController.tier === "pro" ? "Pro License Active" : "Free Tier"
+                    color: App.licenseController.tier === "pro" ? theme.good : theme.text
                     font.pixelSize: 14
                     font.weight: Font.Medium
                 }
 
                 Text {
-                    text: LicenseController.tier === "pro"
+                    text: App.licenseController.tier === "pro"
                         ? "All features unlocked"
                         : "Upgrade to Pro for random themes and advanced analytics"
                     color: theme.textDim

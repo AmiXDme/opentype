@@ -57,6 +57,8 @@ Item {
         // ---- mode toolbar ----
         Card {
             Layout.fillWidth: true
+            Layout.preferredHeight: 54
+            Layout.maximumHeight: 54
             pad: 10
 
             RowLayout {
@@ -190,12 +192,14 @@ Item {
         // ---- stat cards ----
         RowLayout {
             Layout.fillWidth: true
-            Layout.preferredHeight: 86
+            Layout.preferredHeight: 96
+            Layout.maximumHeight: 96
             spacing: 12
 
             Card {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.maximumHeight: 96
                 pad: 12
 
                 ColumnLayout {
@@ -227,6 +231,7 @@ Item {
             Card {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.maximumHeight: 96
                 pad: 12
 
                 ColumnLayout {
@@ -257,6 +262,7 @@ Item {
             Card {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.maximumHeight: 96
                 pad: 12
 
                 ColumnLayout {
@@ -281,6 +287,7 @@ Item {
             Card {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.maximumHeight: 96
                 pad: 12
 
                 ColumnLayout {
@@ -355,6 +362,7 @@ Item {
         Card {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.minimumHeight: 220
             pad: 0
 
             ColumnLayout {
@@ -425,6 +433,7 @@ Item {
         // ---- bottom action bar ----
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
+            Layout.preferredHeight: 40
             spacing: 8
 
             NavButton {
