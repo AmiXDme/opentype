@@ -64,17 +64,25 @@ ContentCatalog* TextSource::getCatalog()
 
 QString TextSource::generateWords(int count)
 {
-    if (m_wordList.isEmpty()) return "";
+    QStringList words = m_wordList;
+    if (ContentCatalog *catalog = getCatalog()) {
+        QStringList live = catalog->wordsForLanguage(m_currentLanguage);
+        if (!live.isEmpty()) {
+            words = live;
+            m_wordList = live;
+        }
+    }
+    if (words.isEmpty()) return "";
 
-    QStringList words;
+    QStringList picked;
     auto *rng = QRandomGenerator::global();
 
     for (int i = 0; i < count; i++) {
-        int idx = rng->bounded(m_wordList.size());
-        words.append(m_wordList.at(idx));
+        int idx = rng->bounded(words.size());
+        picked.append(words.at(idx));
     }
 
-    return words.join(" ");
+    return picked.join(" ");
 }
 
 QString TextSource::generateTimed(int seconds)
@@ -85,10 +93,23 @@ QString TextSource::generateTimed(int seconds)
 
 QString TextSource::generateQuote()
 {
-    if (m_quotes.isEmpty()) return "";
+    QStringList quotes = m_quotes;
+    if (ContentCatalog *catalog = getCatalog()) {
+        QStringList live = catalog->quotes(m_currentLanguage);
+        if (!live.isEmpty()) {
+            quotes = live;
+            m_quotes = live;
+        }
+        QStringList langs = catalog->languages();
+        if (!langs.isEmpty() && m_languages != langs) {
+            m_languages = langs;
+            emit languagesChanged();
+        }
+    }
+    if (quotes.isEmpty()) return "";
     auto *rng = QRandomGenerator::global();
-    int idx = rng->bounded(m_quotes.size());
-    return m_quotes.at(idx);
+    int idx = rng->bounded(quotes.size());
+    return quotes.at(idx);
 }
 
 QString TextSource::generateCustom(const QString &text)
@@ -99,6 +120,13 @@ QString TextSource::generateCustom(const QString &text)
 QVariantList TextSource::getAdaptiveKeys(int count)
 {
     QVariantList keys;
+    // Return most common weak keys; real stats-driven selection happens in
+    // TypingSurface via keyStats. Keep deterministic fallback so adaptive
+    // mode always has content instead of an empty list.
+    const QStringList fallback = {"e", "t", "a", "o", "i", "n", "s", "r"};
+    for (int i = 0; i < count && i < fallback.size(); ++i) {
+        keys.append(fallback.at(i));
+    }
     return keys;
 }
 

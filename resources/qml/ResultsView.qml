@@ -39,9 +39,9 @@ Item {
             }
 
             StatBadge {
-                value: Math.floor(root.time / 60).toString()
+                value: root.time >= 60 ? Math.floor(root.time / 60).toString() : Math.round(root.time).toString()
                 label: "Time"
-                unit: "m"
+                unit: root.time >= 60 ? "m" : "s"
             }
 
             StatBadge {

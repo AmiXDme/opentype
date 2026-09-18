@@ -6,7 +6,7 @@ import OpenType 1.0
 Dialog {
     id: root
 
-    property string userTheme: ProfileManager.settings.theme || "yaru_dark"
+    property string userTheme: App.profileManager.settings.theme || "yaru_dark"
 
     title: "Theme Picker"
     modal: true
@@ -21,9 +21,10 @@ Dialog {
     }
 
     onClosed: {
-        if (ProfileManager.settings.theme !== root.userTheme) {
-            ProfileManager.settings.theme = root.userTheme
-            ProfileManager.setSettings(ProfileManager.settings)
+        if (App.profileManager.settings.theme !== root.userTheme) {
+            var s = App.profileManager.settings
+            s.theme = root.userTheme
+            App.profileManager.setSettings(s)
         }
     }
 
@@ -44,7 +45,7 @@ Dialog {
             Layout.fillHeight: true
             cellWidth: 110
             cellHeight: 90
-            model: ThemeCatalog.themeNames()
+            model: App.themeCatalog.themeNames()
 
             delegate: Item {
                 width: 100
@@ -54,7 +55,7 @@ Dialog {
                     anchors.fill: parent
                     anchors.margins: 4
                     radius: theme.rsm
-                    color: ThemeCatalog.colors(modelData).bg || "#1a1a1a"
+                    color: App.themeCatalog.colors(modelData).bg || "#1a1a1a"
                     border.color: root.userTheme === modelData ? theme.accent : theme.border
                     border.width: root.userTheme === modelData ? 2 : 1
 
@@ -67,12 +68,12 @@ Dialog {
                             height: 18
                             radius: 4
                             anchors.horizontalCenter: parent.horizontalCenter
-                            color: ThemeCatalog.colors(modelData).main || "#e2b714"
+                            color: App.themeCatalog.colors(modelData).main || "#e2b714"
                         }
 
                         Text {
                             text: modelData
-                            color: ThemeCatalog.colors(modelData).text || "#e0e0e0"
+                            color: App.themeCatalog.colors(modelData).text || "#e0e0e0"
                             font.pixelSize: 9
                             anchors.horizontalCenter: parent.horizontalCenter
                             elide: Text.ElideRight

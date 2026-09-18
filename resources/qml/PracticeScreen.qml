@@ -18,6 +18,21 @@ Item {
     signal sessionComplete(var stats)
     signal goHome()
 
+    StatsStore {
+        id: statsStore
+        Component.onCompleted: {
+            var pid = (App.profileManager.activeId || "default")
+            statsStore.loadStats(pid)
+        }
+    }
+
+    KeySounds {
+        id: sounds
+        clickPack: App.profileManager.settings.clickPack || "off"
+        errorPack: App.profileManager.settings.errorPack || "off"
+        volume: App.profileManager.settings.volume !== undefined ? App.profileManager.settings.volume : 0.5
+    }
+
     Component.onCompleted: {
         // Delay slightly to ensure all bindings and components are initialized
         initTimer.start()
@@ -63,15 +78,27 @@ Item {
 
             TypingSurface {
                 id: typingSurface
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+                anchors.fill: parent
+                mode: root.mode
+                language: root.language
+                layout: root.layout
+                onKeyTyped: function(correct, key) {
+                    if (correct) sounds.playClick()
+                    else sounds.playError()
+                }
                 onSessionComplete: root.endSession({
                     wpm: typingSurface.wpm,
+                    rawWpm: typingSurface.rawWpm,
                     accuracy: typingSurface.accuracy,
                     progress: typingSurface.progress,
                     correct: typingSurface.correctCount,
                     errors: typingSurface.errorCount,
-                    time: typingSurface.elapsedMs / 1000
+                    totalKeystrokes: typingSurface.totalKeystrokes,
+                    time: typingSurface.elapsedMs / 1000,
+                    elapsedMs: typingSurface.elapsedMs,
+                    mode: root.mode,
+                    language: root.language,
+                    layout: root.layout
                 })
             }
         }
@@ -105,6 +132,7 @@ Item {
     }
 
     function endSession(stats) {
+        statsStore.recordSession(stats)
         root.sessionComplete(stats)
     }
 }

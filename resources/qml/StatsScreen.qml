@@ -9,7 +9,13 @@ Item {
 
     StatsStore {
         id: statsStore
+        Component.onCompleted: {
+            var pid = (App.profileManager.activeId || "default")
+            statsStore.loadStats(pid)
+        }
     }
+
+    property string exportStatus: ""
 
     ColumnLayout {
         anchors.fill: parent
@@ -68,8 +74,7 @@ Item {
             pad: 16
 
             HistoryChart {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+                anchors.fill: parent
                 values: {
                     var wpmList = []
                     var sessions = statsStore.sessions()
@@ -85,7 +90,17 @@ Item {
             text: "Export to CSV"
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
+                var ok = statsStore.exportCsv("")
+                exportStatus = ok ? "Saved to Documents/OpenType-stats.csv" : "Export failed"
             }
+        }
+
+        Text {
+            Layout.alignment: Qt.AlignHCenter
+            visible: exportStatus.length > 0
+            text: exportStatus
+            color: theme.textDim
+            font.pixelSize: 12
         }
     }
 }

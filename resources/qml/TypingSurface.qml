@@ -12,11 +12,13 @@ Rectangle {
     property int timedSeconds: 60
 
     property alias wpm: engine.wpm
+    property alias rawWpm: engine.rawWpm
     property alias accuracy: engine.accuracy
     property alias targetText: engine.targetText
     property alias typedText: engine.typedText
     property alias running: engine.running
     property alias elapsedMs: engine.elapsedMs
+    property alias totalKeystrokes: engine.totalKeystrokes
     property int correctCount: engine.correctCount
     property int errorCount: engine.errorCount
     property real progress: 0
@@ -211,8 +213,8 @@ Rectangle {
             text = textSource.generateAdaptiveText(weakKeys, root.wordCount)
         }
 
-        engine.setTargetText(text)
         engine.startSession(root.mode, root.language, root.layout)
+        engine.setTargetText(text)
         root.forceActiveFocus()
     }
 

@@ -6,9 +6,11 @@
 
 StatsStore::StatsStore(QObject *parent)
     : QObject(parent)
+    , m_profileId("default")
 {
     m_dataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkpath(m_dataDir);
+    loadStats(m_profileId);
 }
 
 void StatsStore::recordSession(const QVariantMap &stats)
@@ -80,7 +82,12 @@ QVariantMap StatsStore::recentAverages() const
 
 bool StatsStore::exportCsv(const QString &path) const
 {
-    QFile file(path);
+    QString outPath = path;
+    if (outPath.isEmpty()) {
+        outPath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
+            + "/OpenType-stats.csv";
+    }
+    QFile file(outPath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 

@@ -4,10 +4,10 @@
         <file>resources/qml/Theme.qml</file>
         <file>resources/qml/FocusState.qml</file>
         <file>resources/qml/TypingSurface.qml</file>
-        <file>resources/qml/screens/HomeScreen.qml</file>
-        <file>resources/qml/screens/PracticeScreen.qml</file>
-        <file>resources/qml/screens/StatsScreen.qml</file>
-        <file>resources/qml/screens/ResultsView.qml</file>
+        <file>resources/qml/HomeScreen.qml</file>
+        <file>resources/qml/PracticeScreen.qml</file>
+        <file>resources/qml/StatsScreen.qml</file>
+        <file>resources/qml/ResultsView.qml</file>
         <file>resources/qml/Heatmap.qml</file>
         <file>resources/qml/KeyRing.qml</file>
         <file>resources/qml/Sparkline.qml</file>
@@ -20,11 +20,11 @@
         <file>resources/qml/NavButton.qml</file>
         <file>resources/qml/Selector.qml</file>
         <file>resources/qml/ProfileSwitcher.qml</file>
-        <file>resources/qml/screens/ThemePicker.qml</file>
+        <file>resources/qml/ThemePicker.qml</file>
+        <file>resources/qml/SettingsScreen.qml</file>
         <file>resources/qml/AboutDialog.qml</file>
         <file>resources/qml/AccountDialog.qml</file>
         <file>resources/qml/KeySounds.qml</file>
-        <file>resources/qml/AppGlobals.qml</file>
         <file>resources/data/themes.json</file>
         <file>resources/data/languages.json</file>
         <file>resources/data/keyboard-layouts.json</file>
@@ -39,5 +39,40 @@
         <file alias="resources/sounds/key-space.wav">resources/sounds/sound_075.wav</file>
         <file alias="resources/sounds/complete.wav">resources/sounds/sound_000.wav</file>
         <file alias="resources/sounds/notification.wav">resources/sounds/sound_079.wav</file>
+        <file>resources/sounds/sound_000.wav</file>
+        <file>resources/sounds/sound_001.wav</file>
+        <file>resources/sounds/sound_002.wav</file>
+        <file>resources/sounds/sound_003.wav</file>
+        <file>resources/sounds/sound_004.wav</file>
+        <file>resources/sounds/sound_005.wav</file>
+        <file>resources/sounds/sound_006.wav</file>
+        <file>resources/sounds/sound_007.wav</file>
+        <file>resources/sounds/sound_008.wav</file>
+        <file>resources/sounds/sound_009.wav</file>
+        <file>resources/sounds/sound_010.wav</file>
+        <file>resources/sounds/sound_011.wav</file>
+        <file>resources/sounds/sound_012.wav</file>
+        <file>resources/sounds/sound_013.wav</file>
+        <file>resources/sounds/sound_071.wav</file>
+        <file>resources/sounds/sound_072.wav</file>
+        <file>resources/sounds/sound_073.wav</file>
+        <file>resources/sounds/sound_074.wav</file>
+        <file>resources/sounds/sound_075.wav</file>
+        <file>resources/sounds/sound_076.wav</file>
+        <file>resources/sounds/sound_077.wav</file>
+        <file>resources/sounds/sound_078.wav</file>
+        <file>resources/sounds/sound_079.wav</file>
+        <file>resources/sounds/sound_080.wav</file>
+        <file>resources/sounds/sound_081.wav</file>
+        <file>resources/sounds/sound_082.wav</file>
+        <file>resources/sounds/sound_083.wav</file>
+        <file>resources/sounds/sound_084.wav</file>
+        <file>resources/sounds/sound_085.wav</file>
+        <file>resources/sounds/sound_086.wav</file>
+        <file>resources/sounds/sound_087.wav</file>
+        <file>resources/sounds/sound_088.wav</file>
+        <file>resources/sounds/sound_089.wav</file>
+        <file>resources/sounds/sound_090.wav</file>
+        <file>resources/sounds/sound_091.wav</file>
     </qresource>
 </RCC>

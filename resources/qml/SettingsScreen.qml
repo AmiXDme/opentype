@@ -116,7 +116,7 @@ Item {
                     }
 
                     Text {
-                        text: ProfileManager.activeName
+                        text: App.profileManager.activeName
                         color: theme.text
                         font.pixelSize: 14
                         font.weight: Font.Medium

@@ -13,8 +13,6 @@ Window {
     title: "OpenType - Typing Tutor"
     color: theme.bg
 
-    Theme { id: theme }
-
     property string currentMode: "words"
     property var lastResults: ({})
 
@@ -51,7 +49,7 @@ Window {
                     text: "\u2699"
                     implicitWidth: 36
                     implicitHeight: 36
-                    onClicked: screenLoader.source = "qrc:/resources/qml/screens/ThemePicker.qml"
+                    onClicked: showSettings()
                 }
             }
         }
@@ -66,11 +64,85 @@ Window {
             id: screenLoader
             Layout.fillWidth: true
             Layout.fillHeight: true
-            source: "qrc:/resources/qml/screens/HomeScreen.qml"
+            sourceComponent: homeScreen
         }
+    }
+
+    Component {
+        id: homeScreen
+        HomeScreen {
+            onStartPractice: function(mode) { showPractice(mode) }
+            onGoStats: showStats()
+        }
+    }
+
+    Component {
+        id: practiceScreen
+        PracticeScreen {
+            mode: appWindow.currentMode
+            onGoHome: showHome()
+            onSessionComplete: function(stats) { showResults(stats) }
+        }
+    }
+
+    Component {
+        id: statsScreen
+        StatsScreen {
+            onGoHome: showHome()
+        }
+    }
+
+    Component {
+        id: resultsView
+        ResultsView {
+            resultData: appWindow.lastResults
+            onGoHome: showHome()
+            onRestart: showPractice(appWindow.currentMode)
+        }
+    }
+
+    Component {
+        id: themePickerScreen
+        ThemePicker {
+            onClosed: showHome()
+        }
+    }
+
+    Component {
+        id: settingsScreen
+        SettingsScreen {
+            onGoHome: showHome()
+        }
+    }
+
+    function showHome() {
+        screenLoader.sourceComponent = homeScreen
+    }
+
+    function showPractice(mode) {
+        appWindow.currentMode = mode
+        screenLoader.sourceComponent = practiceScreen
+    }
+
+    function showStats() {
+        screenLoader.sourceComponent = statsScreen
+    }
+
+    function showResults(stats) {
+        appWindow.lastResults = stats
+        screenLoader.sourceComponent = resultsView
+    }
+
+    function showThemePicker() {
+        var picker = themePickerScreen.createObject(appWindow)
+        if (picker) picker.open()
+    }
+
+    function showSettings() {
+        screenLoader.sourceComponent = settingsScreen
     }
 
     signal goHome()
 
-    onGoHome: screenLoader.source = "qrc:/resources/qml/screens/HomeScreen.qml"
+    onGoHome: showHome()
 }

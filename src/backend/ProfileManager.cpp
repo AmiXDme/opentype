@@ -119,6 +119,12 @@ void ProfileManager::loadProfiles()
             }
         }
     }
+
+    if (m_profiles.isEmpty()) {
+        createProfile("Default");
+    } else if (!m_activeName.isEmpty()) {
+        loadSettings();
+    }
 }
 
 void ProfileManager::saveProfiles()

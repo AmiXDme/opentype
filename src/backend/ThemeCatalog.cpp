@@ -58,7 +58,10 @@ void ThemeCatalog::loadThemes()
         if (!doc.isNull()) {
             parseJsonThemes(doc);
             qDebug() << "Loaded" << m_themes.size() << "themes from themes.json";
-            return;
+            if (!m_themes.isEmpty()) {
+                return;
+            }
+            qWarning() << "themes.json parsed but yielded 0 themes, using builtins";
         }
     }
 

@@ -60,6 +60,17 @@ Rectangle {
         _byKey = m
     }
 
+    function keysForRow(r) {
+        var out = []
+        if (r < 0 || r >= keyRows.length) return out
+        var row = keyRows[r]
+        var widths = r < keyWidths.length ? keyWidths[r] : []
+        for (var c = 0; c < row.length; c++) {
+            out.push({ k: row[c], w: c < widths.length ? widths[c] : 1 })
+        }
+        return out
+    }
+
     onStatsChanged: _rebuild()
 
     Column {
@@ -67,27 +78,27 @@ Rectangle {
         spacing: root.keyGap
 
         Repeater {
-            model: 4
-            Row {
+            model: root.keyRows.length
+            delegate: Row {
+                required property int index
+                property int r: index
                 spacing: root.keyGap
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Repeater {
-                    model: root.keyWidths[index]
+                    model: root.keysForRow(r)
 
                     Rectangle {
-                        width: root.keyU * modelData + root.keyGap * (modelData - 1)
+                        required property var modelData
+                        width: root.keyU * modelData.w + root.keyGap * (modelData.w - 1)
                         height: root.keyU
                         radius: 4
-                        color: root.colorFor(root.getKeyLabel(Repeater.index, index))
+                        color: root.colorFor(modelData.k)
 
                         Text {
                             anchors.centerIn: parent
-                            text: {
-                                var k = root.getKeyLabel(Repeater.index, index)
-                                return k === " " ? "SPACE" : k.toUpperCase()
-                            }
-                            color: root.hasData(root.getKeyLabel(Repeater.index, index)) ? "#10131a" : theme.textDim
+                            text: modelData.k === " " ? "SPACE" : String(modelData.k).toUpperCase()
+                            color: root.hasData(modelData.k) ? "#10131a" : theme.textDim
                             font.pixelSize: 10
                             font.weight: Font.DemiBold
                         }

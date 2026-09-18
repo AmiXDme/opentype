@@ -1,9 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QQmlComponent>
 #include <QQuickStyle>
 #include <QIcon>
 #include <QQmlEngine>
+#include <QDebug>
 
 #include "backend/TypingEngine.h"
 #include "backend/TextSource.h"
@@ -40,6 +42,22 @@ int main(int argc, char *argv[])
 
     ContentCatalog *contentCatalog = new ContentCatalog(&engine);
     engine.rootContext()->setContextProperty("ContentCatalog", contentCatalog);
+
+    // Theme is a QML object (needs App.themeCatalog). Instantiate it here and
+    // expose as context property "theme" so every screen (including Loader-
+    // loaded files, which cannot see Main.qml ids) can use theme.bg etc.
+    QQmlComponent themeComponent(&engine, QUrl(QStringLiteral("qrc:/resources/qml/Theme.qml")));
+    QObject *themeObject = nullptr;
+    if (themeComponent.isError()) {
+        qWarning() << "Theme component errors:" << themeComponent.errors();
+    } else {
+        themeObject = themeComponent.create(engine.rootContext());
+        if (themeObject) {
+            engine.rootContext()->setContextProperty("theme", themeObject);
+        } else {
+            qWarning() << "Failed to create theme object";
+        }
+    }
 
     engine.load(QUrl(QStringLiteral("qrc:/resources/qml/Main.qml")));
 
