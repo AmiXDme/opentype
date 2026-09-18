@@ -25,6 +25,10 @@ Rectangle {
 
     property var keyStats: ([])
     property var wpmSamples: ([])
+    property var weakKeys: []
+    property bool keyboardVisible: true
+    property alias punctuation: textSource.punctuation
+    property alias numbers: textSource.numbers
 
     signal sessionComplete()
     signal keyTyped(bool correct, string key)
@@ -83,6 +87,16 @@ Rectangle {
     }
 
     Keys.onPressed: function(event) {
+        if (event.key === Qt.Key_Escape) {
+            root.startSession(true)
+            event.accepted = true
+            return
+        }
+        if (event.key === Qt.Key_Tab) {
+            root.startSession(true)
+            event.accepted = true
+            return
+        }
         if (event.key === Qt.Key_Backspace) {
             event.accepted = true
             return
@@ -148,9 +162,33 @@ Rectangle {
         }
 
         Heatmap {
+            visible: root.keyboardVisible
             Layout.fillWidth: true
-            Layout.preferredHeight: 140
+            Layout.preferredHeight: root.keyboardVisible ? 150 : 0
+            compact: true
             stats: root.keyStats
+            nextKey: engine.targetText.length > engine.targetPosition
+                ? engine.targetText.charAt(engine.targetPosition) : ""
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+
+            Text {
+                text: engine.running ? "Keep going..." : (engine.targetText.length > 0 ? "Click here and start typing" : "")
+                color: theme.textDim
+                font.pixelSize: 12
+                font.family: theme.mono
+            }
+
+            Item { Layout.fillWidth: true }
+
+            Text {
+                text: "esc restart · tab new text"
+                color: theme.textDim
+                font.pixelSize: 12
+                font.family: theme.mono
+            }
         }
     }
 
@@ -200,6 +238,7 @@ Rectangle {
         root.wpmSamples = []
         root.keyStats = []
         root.progress = 0
+        root.weakKeys = []
 
         var text = ""
         if (root.mode === "words") {
@@ -210,11 +249,24 @@ Rectangle {
             text = textSource.generateQuote()
         } else if (root.mode === "adaptive") {
             var weakKeys = textSource.getAdaptiveKeys(5)
+            root.weakKeys = weakKeys
             text = textSource.generateAdaptiveText(weakKeys, root.wordCount)
+        } else if (root.mode === "custom") {
+            text = textSource.generateWords(root.wordCount)
         }
 
         engine.startSession(root.mode, root.language, root.layout)
         engine.setTargetText(text)
+        root.forceActiveFocus()
+    }
+
+    function startCustom(text) {
+        root.wpmSamples = []
+        root.keyStats = []
+        root.progress = 0
+        root.weakKeys = []
+        engine.startSession("custom", root.language, root.layout)
+        engine.setTargetText(textSource.generateCustom(text))
         root.forceActiveFocus()
     }
 

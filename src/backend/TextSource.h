@@ -14,6 +14,8 @@ class TextSource : public QObject
     Q_OBJECT
     Q_PROPERTY(QStringList languages READ languages NOTIFY languagesChanged)
     Q_PROPERTY(QString currentLanguage READ currentLanguage WRITE setCurrentLanguage NOTIFY currentLanguageChanged)
+    Q_PROPERTY(bool punctuation READ punctuation WRITE setPunctuation NOTIFY punctuationChanged)
+    Q_PROPERTY(bool numbers READ numbers WRITE setNumbers NOTIFY numbersChanged)
 
 public:
     explicit TextSource(QObject *parent = nullptr);
@@ -22,6 +24,10 @@ public:
     QStringList languages() const { return m_languages; }
     QString currentLanguage() const { return m_currentLanguage; }
     void setCurrentLanguage(const QString &lang);
+    bool punctuation() const { return m_punctuation; }
+    void setPunctuation(bool on);
+    bool numbers() const { return m_numbers; }
+    void setNumbers(bool on);
 
     Q_INVOKABLE QString generateWords(int count);
     Q_INVOKABLE QString generateTimed(int seconds);
@@ -34,14 +40,19 @@ public:
 signals:
     void languagesChanged();
     void currentLanguageChanged();
+    void punctuationChanged();
+    void numbersChanged();
 
 private:
     QStringList m_languages;
     QString m_currentLanguage = "english";
+    bool m_punctuation = false;
+    bool m_numbers = false;
     QStringList m_wordList;
     QStringList m_quotes;
 
     ContentCatalog* getCatalog();
+    QString applyExtras(const QString &word);
 };
 
 #endif // TEXTSOURCE_H

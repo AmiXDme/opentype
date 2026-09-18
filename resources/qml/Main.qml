@@ -81,6 +81,7 @@ Window {
         PracticeScreen {
             mode: appWindow.currentMode
             onGoHome: showHome()
+            onOpenSettings: showSettings()
             onSessionComplete: function(stats) { showResults(stats) }
         }
     }

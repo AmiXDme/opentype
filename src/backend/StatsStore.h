@@ -34,6 +34,7 @@ public:
     Q_INVOKABLE QVariantList sessions() const;
     Q_INVOKABLE QVariantMap totals() const;
     Q_INVOKABLE QVariantMap recentAverages() const;
+    Q_INVOKABLE QVariantMap keyTotals() const;
     Q_INVOKABLE bool exportCsv(const QString &path) const;
     Q_INVOKABLE void loadStats(const QString &profileId);
     Q_INVOKABLE void saveStats();
@@ -52,6 +53,7 @@ private:
     int m_totalKeystrokes = 0;
 
     QJsonArray m_sessions;
+    QJsonObject m_keyTotals;
     QString m_profileId;
     QString m_dataDir;
 };

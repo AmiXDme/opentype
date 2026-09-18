@@ -25,6 +25,7 @@
         <file>resources/qml/AboutDialog.qml</file>
         <file>resources/qml/AccountDialog.qml</file>
         <file>resources/qml/KeySounds.qml</file>
+        <file>resources/icons/opentype.png</file>
         <file>resources/data/themes.json</file>
         <file>resources/data/languages.json</file>
         <file>resources/data/keyboard-layouts.json</file>

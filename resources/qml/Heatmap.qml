@@ -6,6 +6,9 @@ Rectangle {
 
     property var stats: []
     property string metric: "accuracy"
+    property bool compact: false
+    property string nextKey: ""
+    property bool showSpacebar: true
 
     color: "transparent"
 
@@ -30,6 +33,19 @@ Rectangle {
     function colorFor(k) {
         var s = _byKey[k]
         if (!s || s.attempts === 0) return theme.surface2
+        if (root.metric === "speed") {
+            var t = 0
+            var maxT = 1
+            for (var key in _byKey) {
+                var v = _byKey[key]
+                if (v && v.avgTime > maxT) maxT = v.avgTime
+            }
+            t = Math.min(1, (s.avgTime || 0) / (maxT || 1))
+            var r = theme.good.r * (1 - t) + theme.error.r * t
+            var g = theme.good.g * (1 - t) + theme.error.g * t
+            var b = theme.good.b * (1 - t) + theme.error.b * t
+            return Qt.rgba(r, g, b, 1)
+        }
         var errRate = s.errors / s.attempts
         if (errRate < 0.05) return theme.good
         if (errRate < 0.15) return theme.accent
@@ -60,15 +76,25 @@ Rectangle {
         _byKey = m
     }
 
+    function rowCount() {
+        return root.compact ? 3 : root.keyRows.length
+    }
+
     function keysForRow(r) {
+        var rr = root.compact ? r + 1 : r
         var out = []
-        if (r < 0 || r >= keyRows.length) return out
-        var row = keyRows[r]
-        var widths = r < keyWidths.length ? keyWidths[r] : []
+        if (rr < 0 || rr >= keyRows.length) return out
+        var row = keyRows[rr]
+        var widths = rr < keyWidths.length ? keyWidths[rr] : []
         for (var c = 0; c < row.length; c++) {
             out.push({ k: row[c], w: c < widths.length ? widths[c] : 1 })
         }
         return out
+    }
+
+    function isNext(k) {
+        if (root.nextKey === undefined || root.nextKey === "") return false
+        return String(root.nextKey).toLowerCase() === String(k).toLowerCase()
     }
 
     onStatsChanged: _rebuild()
@@ -78,7 +104,7 @@ Rectangle {
         spacing: root.keyGap
 
         Repeater {
-            model: root.keyRows.length
+            model: root.rowCount()
             delegate: Row {
                 required property int index
                 property int r: index
@@ -94,6 +120,8 @@ Rectangle {
                         height: root.keyU
                         radius: 4
                         color: root.colorFor(modelData.k)
+                        border.color: root.isNext(modelData.k) ? theme.accent : "transparent"
+                        border.width: root.isNext(modelData.k) ? 2 : 0
 
                         Text {
                             anchors.centerIn: parent
@@ -105,6 +133,17 @@ Rectangle {
                     }
                 }
             }
+        }
+
+        Rectangle {
+            visible: root.showSpacebar
+            width: root.keyU * 6.25
+            height: root.keyU * 0.9
+            radius: 4
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: root.colorFor(" ")
+            border.color: root.isNext(" ") ? theme.accent : "transparent"
+            border.width: root.isNext(" ") ? 2 : 0
         }
     }
 }

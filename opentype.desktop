@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=OpenType
+Comment=Touch typing tutor and speed test (open-source clone)
+Exec=OpenType
+Icon=opentype
+Terminal=false
+Type=Application
+Categories=Education;Utility;
+StartupWMClass=OpenType

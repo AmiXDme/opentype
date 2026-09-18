@@ -29,6 +29,10 @@ void StatsStore::recordSession(const QVariantMap &stats)
     session["layout"] = stats["layout"].toString();
 
     m_sessions.append(session);
+    QVariantList keys = stats["keyStats"].toList();
+    if (!keys.isEmpty()) {
+        recordKeys(keys);
+    }
     recalculate();
     saveStats();
     emit statsChanged();
@@ -36,6 +40,18 @@ void StatsStore::recordSession(const QVariantMap &stats)
 
 void StatsStore::recordKeys(const QVariantList &keys)
 {
+    for (const QVariant &kVar : keys) {
+        QVariantMap km = kVar.toMap();
+        QString key = km.value("key").toString();
+        if (key.isEmpty()) continue;
+        QJsonObject cur = m_keyTotals.value(key).toObject();
+        cur["attempts"] = cur["attempts"].toInt() + km.value("attempts", 0).toInt();
+        cur["errors"] = cur["errors"].toInt() + km.value("errors", 0).toInt();
+        cur["totalTime"] = cur["totalTime"].toDouble() + km.value("avgTime", 0).toDouble() * km.value("attempts", 0).toInt();
+        m_keyTotals[key] = cur;
+    }
+    saveStats();
+    emit statsChanged();
 }
 
 QVariantList StatsStore::sessions() const
@@ -45,6 +61,25 @@ QVariantList StatsStore::sessions() const
         list.append(val.toObject().toVariantMap());
     }
     return list;
+}
+
+QVariantMap StatsStore::keyTotals() const
+{
+    QVariantMap out;
+    for (auto it = m_keyTotals.constBegin(); it != m_keyTotals.constEnd(); ++it) {
+        QJsonObject o = it.value().toObject();
+        int attempts = o["attempts"].toInt();
+        int errors = o["errors"].toInt();
+        double totalTime = o["totalTime"].toDouble();
+        QVariantMap m;
+        m["attempts"] = attempts;
+        m["errors"] = errors;
+        m["errorRate"] = attempts > 0 ? (double)errors / attempts : 0.0;
+        m["accuracy"] = attempts > 0 ? (double)(attempts - errors) / attempts * 100.0 : 0.0;
+        m["avgTime"] = attempts > 0 ? totalTime / attempts : 0.0;
+        out[it.key()] = m;
+    }
+    return out;
 }
 
 QVariantMap StatsStore::totals() const
@@ -122,6 +157,7 @@ void StatsStore::loadStats(const QString &profileId)
         if (doc.isObject()) {
             QJsonObject obj = doc.object();
             m_sessions = obj["sessions"].toArray();
+            m_keyTotals = obj["keyTotals"].toObject();
             recalculate();
             emit statsChanged();
         }
@@ -139,6 +175,7 @@ void StatsStore::saveStats()
     if (file.open(QIODevice::WriteOnly)) {
         QJsonObject obj;
         obj["sessions"] = m_sessions;
+        obj["keyTotals"] = m_keyTotals;
 
         file.write(QJsonDocument(obj).toJson());
         file.close();

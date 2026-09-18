@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
     app.setOrganizationName("OpenType");
     app.setApplicationName("OpenType");
     app.setApplicationVersion("1.1.0");
+    app.setWindowIcon(QIcon(QStringLiteral(":/resources/icons/opentype.png")));
 
     QQuickStyle::setStyle("Basic");
 

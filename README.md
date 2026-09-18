@@ -48,6 +48,7 @@ make -j$(nproc)
 - Original TypingMaster: Keshav Bhatt (KTechpit)
 - https://github.com/keshavbhatt/typingmaster-packaging
 - https://flathub.org/en/apps/com.ktechpit.typingmaster
+- App icon artwork: original TypingMaster icon by Keshav Bhatt (used with attribution; will be replaced with original artwork on request)
 
 ## License
 

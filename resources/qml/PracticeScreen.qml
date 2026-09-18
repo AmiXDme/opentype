@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls.Basic
 import OpenType 1.0
 
 Item {
@@ -8,6 +9,8 @@ Item {
     property string mode: "words"
     property string language: "english"
     property string layout: "qwerty"
+    property int timedSeconds: 30
+    property bool keyboardVisible: true
 
     property alias targetText: typingSurface.targetText
     property alias typedText: typingSurface.typedText
@@ -17,6 +20,7 @@ Item {
 
     signal sessionComplete(var stats)
     signal goHome()
+    signal openSettings()
 
     StatsStore {
         id: statsStore
@@ -34,7 +38,6 @@ Item {
     }
 
     Component.onCompleted: {
-        // Delay slightly to ensure all bindings and components are initialized
         initTimer.start()
     }
 
@@ -49,86 +52,420 @@ Item {
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 16
-        spacing: 16
+        spacing: 12
 
-        RowLayout {
+        // ---- mode toolbar ----
+        Card {
             Layout.fillWidth: true
+            pad: 10
 
-            NavButton {
-                text: "Home"
-                onClicked: root.goHome()
+            RowLayout {
+                anchors.fill: parent
+                spacing: 6
+
+                Repeater {
+                    model: ["time", "words", "quote", "custom", "adaptive"]
+                    Rectangle {
+                        required property var modelData
+                        required property int index
+                        Layout.preferredWidth: 72
+                        Layout.preferredHeight: 30
+                        radius: theme.rsm
+                        color: root.mode === modelData || (root.mode === "timed" && modelData === "time")
+                            ? theme.accent : "transparent"
+                        border.color: theme.border
+                        border.width: 1
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: modelData
+                            color: (root.mode === modelData || (root.mode === "timed" && modelData === "time")) ? theme.bg : theme.textDim
+                            font.pixelSize: 12
+                            font.weight: Font.Medium
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                root.mode = (modelData === "time") ? "timed" : modelData
+                                root.startSession()
+                            }
+                        }
+                    }
+                }
+
+                RowLayout {
+                    visible: root.mode === "timed"
+                    spacing: 6
+
+                    Repeater {
+                        model: [15, 30, 60, 120]
+                        Rectangle {
+                            required property var modelData
+                            Layout.preferredWidth: 48
+                            Layout.preferredHeight: 30
+                            radius: theme.rsm
+                            color: root.timedSeconds === modelData ? theme.accent : "transparent"
+                            border.color: theme.border
+                            border.width: 1
+
+                            Text {
+                                anchors.centerIn: parent
+                                text: modelData + "s"
+                                color: root.timedSeconds === modelData ? theme.bg : theme.textDim
+                                font.pixelSize: 12
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: {
+                                    root.timedSeconds = modelData
+                                    root.startSession()
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Repeater {
+                    model: ["punctuation", "numbers"]
+                    Rectangle {
+                        required property var modelData
+                        Layout.preferredWidth: 96
+                        Layout.preferredHeight: 30
+                        radius: theme.rsm
+                        color: (modelData === "punctuation" ? typingSurface.punctuation : typingSurface.numbers) ? theme.accent : "transparent"
+                        border.color: theme.border
+                        border.width: 1
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: modelData
+                            color: (modelData === "punctuation" ? typingSurface.punctuation : typingSurface.numbers) ? theme.bg : theme.textDim
+                            font.pixelSize: 12
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                if (modelData === "punctuation") typingSurface.punctuation = !typingSurface.punctuation
+                                else typingSurface.numbers = !typingSurface.numbers
+                                root.startSession()
+                            }
+                        }
+                    }
+                }
+
+                Item { Layout.fillWidth: true }
+
+                ComboBox {
+                    id: langCombo
+                    Layout.preferredWidth: 120
+                    Layout.preferredHeight: 30
+                    model: ContentCatalog.languages()
+                    displayText: root.language
+                    onActivated: {
+                        root.language = ContentCatalog.languages()[index]
+                        root.startSession()
+                    }
+                }
+
+                ComboBox {
+                    id: layoutCombo
+                    Layout.preferredWidth: 110
+                    Layout.preferredHeight: 30
+                    model: ContentCatalog.layouts()
+                    displayText: root.layout
+                    onActivated: {
+                        root.layout = ContentCatalog.layouts()[index]
+                        root.startSession()
+                    }
+                }
             }
-
-            Item { Layout.fillWidth: true }
-
-            Text {
-                text: root.mode.charAt(0).toUpperCase() + root.mode.slice(1) + " Practice"
-                color: theme.text
-                font.pixelSize: 18
-                font.weight: Font.Bold
-            }
-
-            Item { Layout.fillWidth: true }
         }
 
+        // ---- stat cards ----
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 86
+            spacing: 12
+
+            Card {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                pad: 12
+
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 2
+
+                    Text {
+                        text: "WPM"
+                        color: theme.textDim
+                        font.pixelSize: 10
+                    }
+
+                    Text {
+                        text: Math.round(wpm).toString()
+                        color: theme.accent
+                        font.pixelSize: 22
+                        font.bold: true
+                    }
+
+                    Sparkline {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        values: typingSurface.wpmSamples.map(function(s) { return s.wpm })
+                        line: theme.accent
+                    }
+                }
+            }
+
+            Card {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                pad: 12
+
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 2
+
+                    Text {
+                        text: "ACCURACY"
+                        color: theme.textDim
+                        font.pixelSize: 10
+                    }
+
+                    Text {
+                        text: Math.round(accuracy).toString() + "%"
+                        color: theme.text
+                        font.pixelSize: 22
+                        font.bold: true
+                    }
+
+                    Meter {
+                        Layout.fillWidth: true
+                        value: accuracy
+                        cap: 100
+                    }
+                }
+            }
+
+            Card {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                pad: 12
+
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 2
+
+                    Text {
+                        text: "ERRORS"
+                        color: theme.textDim
+                        font.pixelSize: 10
+                    }
+
+                    Text {
+                        text: typingSurface.errorCount.toString()
+                        color: theme.text
+                        font.pixelSize: 22
+                        font.bold: true
+                    }
+                }
+            }
+
+            Card {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                pad: 12
+
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 2
+
+                    Text {
+                        text: root.mode === "timed" ? "TIME" : "PROGRESS"
+                        color: theme.textDim
+                        font.pixelSize: 10
+                    }
+
+                    Text {
+                        text: root.mode === "timed"
+                            ? Math.floor(typingSurface.elapsedMs / 1000).toString() + "s"
+                            : Math.round(progress).toString() + "%"
+                        color: theme.text
+                        font.pixelSize: 22
+                        font.bold: true
+                    }
+
+                    Meter {
+                        Layout.fillWidth: true
+                        value: root.mode === "timed" ? (typingSurface.elapsedMs / 1000) : progress
+                        cap: root.mode === "timed" ? root.timedSeconds : 100
+                    }
+                }
+            }
+        }
+
+        // ---- focus keys (adaptive) ----
+        Card {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 52
+            visible: root.mode === "adaptive"
+            pad: 10
+
+            RowLayout {
+                anchors.fill: parent
+                spacing: 8
+
+                ColumnLayout {
+                    spacing: 0
+
+                    Text {
+                        text: "FOCUS KEYS"
+                        color: theme.textDim
+                        font.pixelSize: 10
+                    }
+
+                    Text {
+                        text: "weighted toward your weak keys"
+                        color: theme.textDim
+                        font.pixelSize: 10
+                    }
+                }
+
+                Item { Layout.fillWidth: true }
+
+                Repeater {
+                    model: typingSurface.weakKeys
+                    KeyRing {
+                        required property var modelData
+                        keyChar: String(modelData)
+                        mastery: 0.3
+                    }
+                }
+            }
+        }
+
+        // ---- typing card ----
         Card {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            pad: 24
+            pad: 0
 
-            TypingSurface {
-                id: typingSurface
+            ColumnLayout {
                 anchors.fill: parent
-                mode: root.mode
-                language: root.language
-                layout: root.layout
-                onKeyTyped: function(correct, key) {
-                    if (correct) sounds.playClick()
-                    else sounds.playError()
+                anchors.margins: 8
+                spacing: 4
+
+                RowLayout {
+                    visible: root.mode === "custom"
+                    Layout.fillWidth: true
+                    spacing: 8
+
+                    TextField {
+                        id: customInput
+                        Layout.fillWidth: true
+                        placeholderText: "Paste custom text here..."
+                        color: theme.text
+                        font.pixelSize: 14
+                        background: Rectangle {
+                            radius: theme.rsm
+                            color: theme.surface2
+                            border.color: theme.border
+                            border.width: 1
+                        }
+                    }
+
+                    AppButton {
+                        text: "Start"
+                        primary: true
+                        onClicked: {
+                            if (customInput.text.length > 0) typingSurface.startCustom(customInput.text)
+                        }
+                    }
                 }
-                onSessionComplete: root.endSession({
-                    wpm: typingSurface.wpm,
-                    rawWpm: typingSurface.rawWpm,
-                    accuracy: typingSurface.accuracy,
-                    progress: typingSurface.progress,
-                    correct: typingSurface.correctCount,
-                    errors: typingSurface.errorCount,
-                    totalKeystrokes: typingSurface.totalKeystrokes,
-                    time: typingSurface.elapsedMs / 1000,
-                    elapsedMs: typingSurface.elapsedMs,
-                    mode: root.mode,
-                    language: root.language,
+
+                TypingSurface {
+                    id: typingSurface
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    mode: root.mode
+                    language: root.language
                     layout: root.layout
-                })
+                    timedSeconds: root.timedSeconds
+                    keyboardVisible: root.keyboardVisible
+                    onKeyTyped: function(correct, key) {
+                        if (correct) sounds.playClick()
+                        else sounds.playError()
+                    }
+                    onSessionComplete: root.endSession({
+                        wpm: typingSurface.wpm,
+                        rawWpm: typingSurface.rawWpm,
+                        accuracy: typingSurface.accuracy,
+                        progress: typingSurface.progress,
+                        correct: typingSurface.correctCount,
+                        errors: typingSurface.errorCount,
+                        totalKeystrokes: typingSurface.totalKeystrokes,
+                        keyStats: typingSurface.keyStats,
+                        time: typingSurface.elapsedMs / 1000,
+                        elapsedMs: typingSurface.elapsedMs,
+                        mode: root.mode,
+                        language: root.language,
+                        layout: root.layout
+                    })
+                }
             }
         }
 
+        // ---- bottom action bar ----
         RowLayout {
-            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignHCenter
+            spacing: 8
 
-            StatBadge {
-                value: Math.round(wpm).toString()
-                label: "WPM"
+            NavButton {
+                text: "⚙ Settings"
+                implicitWidth: 110
+                implicitHeight: 34
+                onClicked: root.openSettings()
             }
 
-            StatBadge {
-                value: Math.round(accuracy).toString()
-                label: "Accuracy"
-                unit: "%"
+            NavButton {
+                text: root.keyboardVisible ? "⌨ Hide keyboard" : "⌨ Show keyboard"
+                implicitWidth: 150
+                implicitHeight: 34
+                onClicked: root.keyboardVisible = !root.keyboardVisible
             }
 
-            Item { Layout.fillWidth: true }
+            NavButton {
+                text: "↻ Restart"
+                implicitWidth: 100
+                implicitHeight: 34
+                onClicked: root.startSession()
+            }
 
-            Meter {
-                Layout.fillWidth: true
-                value: progress
-                cap: 100
+            AppButton {
+                text: "↝ New text"
+                implicitWidth: 110
+                implicitHeight: 34
+                onClicked: root.startSession()
+            }
+
+            NavButton {
+                text: "← Home"
+                implicitWidth: 100
+                implicitHeight: 34
+                onClicked: root.goHome()
             }
         }
     }
 
     function startSession() {
-        typingSurface.startSession(root.mode, root.language, root.layout)
+        typingSurface.startSession()
     }
 
     function endSession(stats) {

@@ -51,6 +51,41 @@ void TextSource::setCurrentLanguage(const QString &lang)
     }
 }
 
+void TextSource::setPunctuation(bool on)
+{
+    if (m_punctuation != on) {
+        m_punctuation = on;
+        emit punctuationChanged();
+    }
+}
+
+void TextSource::setNumbers(bool on)
+{
+    if (m_numbers != on) {
+        m_numbers = on;
+        emit numbersChanged();
+    }
+}
+
+QString TextSource::applyExtras(const QString &word)
+{
+    if (!m_punctuation && !m_numbers) return word;
+    auto *rng = QRandomGenerator::global();
+    QString out = word;
+    if (m_numbers && rng->bounded(100) < 12) {
+        static const QStringList nums = {"0","1","2","3","4","5","6","7","8","9","10","25","100"};
+        return nums.at(rng->bounded(nums.size()));
+    }
+    if (m_punctuation && rng->bounded(100) < 18) {
+        static const QStringList marks = {".", ",", ";", ":", "!", "?"};
+        out += marks.at(rng->bounded(marks.size()));
+        if (rng->bounded(100) < 30) {
+            out[0] = out[0].toUpper();
+        }
+    }
+    return out;
+}
+
 ContentCatalog* TextSource::getCatalog()
 {
     QQmlEngine *engine = qmlEngine(this);
@@ -79,7 +114,7 @@ QString TextSource::generateWords(int count)
 
     for (int i = 0; i < count; i++) {
         int idx = rng->bounded(words.size());
-        picked.append(words.at(idx));
+        picked.append(applyExtras(words.at(idx)));
     }
 
     return picked.join(" ");
@@ -87,7 +122,8 @@ QString TextSource::generateWords(int count)
 
 QString TextSource::generateTimed(int seconds)
 {
-    int wordCount = seconds * 3;
+    // ~3 words per 2 seconds at moderate pace, scaled by duration
+    int wordCount = qMax(10, seconds * 2);
     return generateWords(wordCount);
 }
 
