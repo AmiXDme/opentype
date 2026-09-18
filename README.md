@@ -11,6 +11,13 @@ chmod +x OpenType-1.4.0-x86_64.AppImage
 ./OpenType-1.4.0-x86_64.AppImage
 ```
 
+**Debian/Ubuntu package (Ubuntu 24.04+, Mint 22+, amd64):**
+
+```bash
+sudo apt install ./opentype-1.4.0-amd64.deb
+OpenType
+```
+
 **Flatpak (sandboxed, distro-independent):**
 
 ```bash
